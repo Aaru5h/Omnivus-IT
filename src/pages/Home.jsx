@@ -17,36 +17,37 @@ import {
   Mail,
   MapPin,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const teamMembers = [
   {
     name: "Alice Johnson",
     photo: "https://randomuser.me/api/portraits/women/68.jpg",
     socials: {
-      facebook: "https://facebook.com/alicejohnson",
-      twitter: "https://twitter.com/alicejohnson",
-      linkedin: "https://linkedin.com/in/alicejohnson",
-      instagram: "https://instagram.com/alicejohnson",
+      facebook: "https://facebook.com/",
+      twitter: "https://twitter.com/",
+      linkedin: "https://linkedin.com/in/",
+      instagram: "https://instagram.com/",
     },
   },
   {
     name: "Bob Smith",
     photo: "https://randomuser.me/api/portraits/men/32.jpg",
     socials: {
-      facebook: "https://facebook.com/bobsmith",
-      twitter: "https://twitter.com/bobsmith",
-      linkedin: "https://linkedin.com/in/bobsmith",
-      instagram: "https://instagram.com/bobsmith",
+      facebook: "https://facebook.com/",
+      twitter: "https://twitter.com/",
+      linkedin: "https://linkedin.com/in/",
+      instagram: "https://instagram.com/",
     },
   },
   {
     name: "Catherine Lee",
     photo: "https://randomuser.me/api/portraits/women/44.jpg",
     socials: {
-      facebook: "https://facebook.com/catherinelee",
-      twitter: "https://twitter.com/catherinelee",
-      linkedin: "https://linkedin.com/in/catherinelee",
-      instagram: "https://instagram.com/catherinelee",
+      facebook: "https://facebook.com/",
+      twitter: "https://twitter.com/",
+      linkedin: "https://linkedin.com/in/",
+      instagram: "https://instagram.com/",
     },
   },
 ];
@@ -103,13 +104,37 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-20 bg-gray-50 text-center">
-        <h1 className="text-4xl font-bold mb-4 fade-in">Empowering Your Digital Journey</h1>
-        <p className="text-lg text-gray-600 mb-6 fade-in delay-200">We build scalable and secure solutions for the modern web.</p>
-        <button className="bg-blue-600 text-white px-6 py-2 rounded-full flex items-center justify-center mx-auto hover:bg-blue-700 transition-colors duration-300 fade-in delay-400">
-          Get Started <ArrowRight className="ml-2 w-4 h-4" />
-        </button>
-      </section>
+      <section className="relative bg-gray-50 py-24">
+  <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+    {/* Left Text Content */}
+    <div className="md:w-1/2 space-y-6">
+      <span className="text-sm uppercase tracking-wide text-blue-600 font-semibold">
+        IT Business Consulting
+      </span>
+      <h1 className="text-4xl md:text-5xl font-extrabold leading-tight text-gray-900">
+        Best IT Solutions <br /> Provider Agency
+      </h1>
+      <p className="text-gray-600 text-base max-w-md">
+        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque totam rem aperiam.
+      </p>
+      <Link to='/services'>
+        <button className="mt-4 inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
+        Our Services <ArrowRight className="ml-2 h-4 w-4" />
+      </button>
+      </Link>
+    </div>
+
+    {/* Right Image */}
+    <div className="md:w-1/2 mt-10 md:mt-0 relative flex justify-center">
+      <img
+        src="https://img.freepik.com/free-photo/people-working-call-center_23-2149284954.jpg"
+        alt="Team working"
+        className="w-[90%] max-w-sm md:max-w-md lg:max-w-lg object-cover hexagon-mask"
+      />
+    </div>
+  </div>
+</section>
+
 
       {/* Services Section - What We Do */}
       <section className="py-16 bg-white">
