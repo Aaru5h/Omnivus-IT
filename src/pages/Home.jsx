@@ -257,19 +257,19 @@ const Home = () => {
             <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-gray-400">
               <li>
-                <a href="#" className="hover:text-white">
+                <Link to='/' className="hover:text-white" onClick={scrollToTop}>
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white">
+                <Link to='/services' className="hover:text-white">
                   Services
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white">
+                <Link to='/blog' className="hover:text-white">
                   Blog
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#" className="hover:text-white">
