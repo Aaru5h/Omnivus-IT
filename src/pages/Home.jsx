@@ -150,36 +150,42 @@ const Home = () => {
     </header>
 
       {/* Hero Section */}
-      <section className="relative bg-gray-50 py-24">
-  <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
-    {/* Left Text Content */}
-    <div className="md:w-1/2 space-y-6">
-      <span className="text-sm uppercase tracking-wide text-blue-600 font-semibold">
-        IT Business Consulting
-      </span>
-      <h1 className="text-4xl md:text-5xl font-extrabold leading-tight text-gray-900">
-        Best IT Solutions <br /> Provider Agency
-      </h1>
-      <p className="text-gray-600 text-base max-w-md">
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque totam rem aperiam.
-      </p>
-      <Link to='/services'>
-        <button className="mt-4 inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
-        Our Services <ArrowRight className="ml-2 h-4 w-4" />
-      </button>
-      </Link>
-    </div>
+      <section
+        className="bg-cover bg-center bg-no-repeat py-24 px-6 md:px-16 relative"
+        style={{
+        backgroundImage: "url('https://html.webtend.net/omnivus/assets/img/banner/banner-one-bg.jpg')",
+        }}
+      >
+        <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-12">
+          {/* Left: Text */}
+          <div className="text-center lg:text-left flex-1">
+            <p className="text-sm text-blue-600 font-semibold mb-4">IT Business Consulting</p>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+              Best IT Solutions <br />
+              Provider Agency
+            </h1>
+            <p className="text-gray-700 text-base mb-8">
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+              doloremque totam rem aperiam.
+            </p>
+            <Link
+              to="/services"
+              className="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition"
+            >
+              Our Services <ArrowRight className="ml-2 w-5 h-5" />
+            </Link>
+          </div>
 
-    {/* Right Image */}
-    <div className="md:w-1/2 mt-10 md:mt-0 relative flex justify-center">
-      <img
-        src="https://img.freepik.com/free-photo/people-working-call-center_23-2149284954.jpg"
-        alt="Team working"
-        className="w-[90%] max-w-sm md:max-w-md lg:max-w-lg object-cover hexagon-mask"
-      />
-    </div>
-  </div>
-</section>
+          {/* Right: Image */}
+          <div className="flex-1">
+            <img
+              src="https://html.webtend.net/omnivus/assets/img/banner/banner-img.png"
+              alt="Consulting"
+              className="w-full max-w-md mx-auto"
+            />
+          </div>
+        </div>
+      </section>
 
 
       {/* Services Section - What We Do */}
