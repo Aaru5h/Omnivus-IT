@@ -6,32 +6,32 @@ const servicesData = [
   {
     title: "UI/UX Design",
     image: "https://html.webtend.net/omnivus/assets/img/service-img/07.jpg",
-    description: "The functional goal of technical content is to help people use a product successfully. The business goal must tie the content."
+    description: "Designing interfaces that are intuitive and delightful for users across platforms."
   },
   {
     title: "IT Consultancy",
     image: "https://html.webtend.net/omnivus/assets/img/service-img/08.jpg",
-    description: "The functional goal of technical content is to help people use a product successfully. The business goal must tie the content."
+    description: "Expert advice to help you navigate complex IT challenges and digital transformation."
   },
   {
     title: "Technology Prof.",
-    image: "https://html.webtend.net/omnivus/assets/img/service-img/09.jpg",
-    description: "The functional goal of technical content is to help people use a product successfully. The business goal must tie the content."
-  },
-  {
-    title: "Web Development",
-    image: "https://html.webtend.net/omnivus/assets/img/service-img/10.jpg",
-    description: "The functional goal of technical content is to help people use a product successfully. The business goal must tie the content."
-  },
-  {
-    title: "Web Development",
     image: "https://html.webtend.net/omnivus/assets/img/service-img/11.jpg",
-    description: "The functional goal of technical content is to help people use a product successfully. The business goal must tie the content."
+    description: "Professional support for integrating and managing emerging technologies."
+  },
+  {
+    title: "Web Development",
+    image: "https://html.webtend.net/omnivus/assets/img/service-img/09.jpg",
+    description: "Creating responsive, fast, and scalable websites tailored to your business."
+  },
+  {
+    title: "App Development",
+    image: "https://html.webtend.net/omnivus/assets/img/service-img/12.jpg",
+    description: "Custom mobile solutions built with performance and user experience in mind."
   },
   {
     title: "Game Design",
-    image: "https://html.webtend.net/omnivus/assets/img/service-img/12.jpg",
-    description: "The functional goal of technical content is to help people use a product successfully. The business goal must tie the content."
+    image: "https://html.webtend.net/omnivus/assets/img/service-img/10.jpg",
+    description: "Designing engaging game mechanics and captivating storylines for all platforms."
   }
 ];
 
@@ -43,32 +43,32 @@ const pricingPlans = {
     { title: "Platinum", price: "$99 / month" }
   ],
   yearly: [
-    { title: "Early Birds", price: "$56 / year" },
-    { title: "Team", price: "$99 / year" },
-    { title: "Personal", price: "$133 / year" },
-    { title: "Platinum", price: "$599 / year" }
+    { title: "Early Birds", price: "$90 / year" },
+    { title: "Team", price: "$320 / year" },
+    { title: "Personal", price: "$690 / year" },
+    { title: "Platinum", price: "$990 / year" }
   ]
 };
 
 const posts = [
   {
     category: "Design/SEO",
-    title: "A series of iOS inspired Vector Icons",
+    title: "A series of iOS 7 inspired Vector Icons",
     image: "https://html.webtend.net/omnivus/assets/img/latest-news/04.jpg"
   },
   {
     category: "Design/SEO",
-    title: "A series of iOS inspired Vector Icons",
+    title: "A series of iOS 7 inspired Vector Icons",
     image: "https://html.webtend.net/omnivus/assets/img/latest-news/05.jpg"
   },
   {
     category: "Design/SEO",
-    title: "A series of iOS inspired Vector Icons",
+    title: "A series of iOS 7 inspired Vector Icons",
     image: "https://html.webtend.net/omnivus/assets/img/latest-news/06.jpg"
   }
 ];
 
-export default function ServicesPage() {
+export default function Services() {
   const [planType, setPlanType] = useState("monthly");
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -84,48 +84,68 @@ export default function ServicesPage() {
       </header>
 
       <section className="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-        {servicesData.map(( data,idx ) => (
-          <div key={idx} className="relative cursor-pointer group rounded-lg overflow-hidden shadow-lg">
-            <img src={data.image} alt={data.title} className="w-full h-60 object-cover group-hover:brightness-75 transition duration-300" />
+        {servicesData.map(({ title, image, description }) => (
+          <div key={title} className="relative cursor-pointer group rounded-lg overflow-hidden shadow-lg">
+            <img src={image} alt={title} className="w-full h-60 object-cover group-hover:brightness-75 transition duration-300" />
             <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent text-white">
-              <h3 className="text-lg font-bold">{data.title}</h3>
-              <p className="opacity-0 group-hover:opacity-100 transition-opacity mt-1 text-sm">{data.description}</p>
+              <h3 className="text-lg font-bold">{title}</h3>
+              <p className="opacity-0 group-hover:opacity-100 transition-opacity mt-1 text-sm">{description}</p>
             </div>
           </div>
         ))}
       </section>
 
-      <section className="bg-[#f7faff] py-20 px-6">
-        <h2 className="text-3xl font-bold mb-8 text-center">Here is Plans</h2>
-        <div className="flex justify-center gap-6 mb-12">
+      <section className="max-w-5xl mx-auto px-6 mb-20">
+        {/* Section Title */}
+        <div className="mb-8 text-center md:text-left">
+          <p className="text-blue-600 font-semibold text-sm border-b-2 inline-block border-blue-600 mb-2">Plans</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold">Here is plans</h2>
+        </div>
+
+        {/* Toggle Buttons */}
+        <div className="flex justify-end gap-6 mb-12">
           {["monthly", "yearly"].map((type) => (
             <button
               key={type}
               onClick={() => setPlanType(type)}
               className={`px-6 py-2 rounded-full font-semibold transition ${
-                planType === type ? "bg-blue-600 text-white shadow-lg" : "bg-gray-200 text-gray-700 hover:bg-blue-400 hover:text-white"
+                planType === type
+                  ? "bg-blue-600 text-white shadow-lg"
+                  : "bg-gray-200 text-gray-700 hover:bg-blue-400 hover:text-white"
               }`}
             >
               {type.charAt(0).toUpperCase() + type.slice(1)}
             </button>
           ))}
         </div>
-       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-          {pricingPlans[planType].map((plan, idx) => (
-            <div key={idx} className="bg-white rounded-lg shadow-md p-8 text-center border border-gray-100 hover:shadow-xl transition">
-              <h3 className="text-sm text-blue-600 font-semibold mb-3">{plan.title}</h3>
-              <div className="text-5xl font-extrabold text-gray-900 mb-2">{plan.price.split(" ")[0].replace("$", "$")}</div>
-              <p className="text-sm text-gray-500 mb-4">Per {plan.price.includes("year") ? "Year" : "Month"}</p>
-              <p className="text-gray-600 text-sm mb-6">
-                The functional goal of technical content is to help people use a product successfully.
-              </p>
-              <button className="border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-2 rounded-full font-medium transition">
-                Purchase Now
-              </button>
-            </div>
-          ))}
+
+        {/* Pricing Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          {pricingPlans[planType].map(({ title, price }) => {
+            const [dollar, duration] = price.split("/");
+            return (
+              <div
+                key={title}
+                className="relative rounded-lg shadow-lg p-6 text-center cursor-pointer bg-white group hover:bg-blue-600 transition"
+              >
+                <div className="group-hover:text-white transition">
+                  <h3 className="text-lg font-semibold text-blue-600 group-hover:text-white mb-2">{title}</h3>
+                  <p className="text-5xl font-extrabold mb-1">{dollar.trim()}</p>
+                  <p className="text-sm mb-4 text-gray-500 group-hover:text-white">{duration.trim().replace(/^./, m => m.toUpperCase())}</p>
+                  <p className="text-sm text-gray-500 mb-6 group-hover:text-white">
+                    The functional goal of technical content is to help people use a product successfully.
+                  </p>
+                  <button className="px-5 py-2 rounded-full bg-white text-blue-600 font-semibold group-hover:bg-white/90 group-hover:text-blue-700 transition">
+                    Purchase Now
+                  </button>
+                </div>
+                <div className="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-30 rounded-lg transition"></div>
+              </div>
+            );
+          })}
         </div>
       </section>
+
 
       <section className="bg-[#0a2540] py-16 px-4">
         <h2 className="text-3xl font-bold text-white text-center mb-4">Newsfeeds</h2>
@@ -134,55 +154,94 @@ export default function ServicesPage() {
         </p>
         <div className="flex flex-wrap justify-center gap-8">
           {posts.map(({ category, title, image }, index) => (
-            <div
-              key={index}
-              className="relative w-72 h-72 rounded-lg overflow-hidden group shadow-lg cursor-pointer"
-            >
-              {/* Background image */}
-              <img
-                src={image}
-                alt={title}
-                className="w-full h-full object-cover group-hover:brightness-75 transition duration-300"
-              />
+        <div
+          key={index}
+          className="relative w-72 h-72 rounded-lg overflow-hidden group shadow-lg cursor-pointer"
+        >
+          {/* Background image with default faded look */}
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover brightness-75 group-hover:rotate-1 transition-all duration-500"
+          />
 
-              {/* Blue overlay */}
-              <div className="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-100 transition duration-300"></div>
+          {/* Blue overlay - slightly visible even before hover */}
+          <div className="absolute inset-0 bg-blue-600 opacity-20 group-hover:opacity-40 transition duration-300"></div>
 
-              {/* Text content container */}
-              <div
-                className="absolute inset-0 flex flex-col justify-end group-hover:justify-start p-4 transition-all duration-500"
-              >
-                <p className="text-white text-xs font-semibold mb-1 transition-all duration-500">
-                  {category}
-                </p>
-                <h3 className="text-white text-base font-bold leading-tight transition-all duration-500">
-                  {title}
-                </h3>
-              </div>
+          {/* Text content - always visible */}
+          <div className="absolute inset-0 flex flex-col justify-end p-4 transition-all duration-500 group-hover:justify-start">
+            <p className="text-white text-xs font-semibold mb-1 transition-all duration-500">
+              {category}
+            </p>
+            <h3 className="text-white text-base font-bold leading-tight transition-all duration-500">
+              {title}
+            </h3>
+          </div>
 
-              {/* Optional arrow on hover */}
-              <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition duration-300">
-                <span className="text-white text-lg">→</span>
-              </div>
-            </div>
-          ))}
+          {/* Arrow - shows on hover */}
+          <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition duration-300">
+            <span className="text-white text-lg">→</span>
+          </div>
+        </div>
+      ))}
+
         </div>
       </section>
 
 
 
-      <footer className="bg-gray-900 text-gray-300 py-10 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-6">
-          <nav className="flex gap-8 text-sm font-medium">
-            <Link to='/' className="hover:text-white">Home</Link>
-            <Link to='/services' className="hover:text-white" onClick={scrollToTop}>Services</Link>
-            <Link to='/blog' className="hover:text-white">Blog</Link>
-            <Link to='/services' className="hover:text-white">Working Hours</Link>
-          </nav>
-          <div className="max-w-md text-xs leading-relaxed">
-            <p>For more than 30 years, IT services has been a reliable partner in the field of logistics and cargo forwarding.</p>
-            <p className="mt-3">Copyright &copy; Omnivus. The web has changed a lot since Vitaly posted his first article in 2006.</p>
+      <footer className="relative bg-cover bg-center bg-no-repeat text-white" style={{ backgroundImage: "url('https://html.webtend.net/omnivus/assets/img/footer-bg.jpg')" }}>
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-blue-950/80"></div>
+
+        {/* Footer content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-3 gap-10">
+          {/* About Section */}
+          <div>
+            <h2 className="text-2xl font-bold mb-4">OmniVus.</h2>
+            <p className="text-sm leading-relaxed">
+              The web has changed a lot since Vitaly posted his first article back in 2006. The team at Smashing has changed too, as have the things that we bring to our community conferences, books, and our membership added to the online magazine.
+            </p>
+            <p className="text-sm mt-4">
+              One thing that hasn't changed is that we're a small team — with most of us not working.
+            </p>
           </div>
+
+          {/* Pages Section */}
+          <div>
+            <h3 className="text-xl font-bold mb-4">Pages</h3>
+            <ul className="space-y-2 text-sm">
+              <li><Link to = '/'>›Home</Link></li>
+              <li><Link to = '/services'>›Services</Link></li>
+              <li>›About</li>
+              <li><Link to='/blog'>›Blog</Link></li>
+              <li>›Refund</li>
+              <li>›Terms</li>
+              <li>›Details</li>
+              <li>›Contact</li>
+              <li>›Business</li>
+              <li>›Affiliate</li>
+            </ul>
+          </div>
+
+          {/* Working Hours Section */}
+          <div>
+            <h3 className="text-xl font-bold mb-4">Working Hours</h3>
+            <ul className="text-sm space-y-1">
+              <li>Monday - Friday: 7:00 - 17:00</li>
+              <li>Saturday: 7:00 - 12:00</li>
+              <li>Sunday and holidays: 8:00 - 10:00</li>
+            </ul>
+            <p className="mt-4 text-sm">
+              <span className="font-semibold">For more than 30 years,</span> IT Service has been a reliable partner in the field of logistics and cargo forwarding.
+            </p>
+            <a href="#" className="text-blue-400 mt-2 inline-block underline text-sm">› Discover More</a>
+          </div>
+        </div>
+
+        {/* Footer bottom */}
+        <div className="relative z-10 text-center text-sm py-4 border-t border-white/10">
+          Copyright By@ <span className="font-semibold">WebTrend</span> - 2021
         </div>
       </footer>
 
