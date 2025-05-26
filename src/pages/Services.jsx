@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowUp } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -72,8 +72,54 @@ export default function Services() {
   const [planType, setPlanType] = useState("monthly");
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className="relative min-h-screen bg-gray-50 text-gray-900 font-sans">
+
+       <header
+      className={`w-full z-50 fixed top-0 left-0 transition-all duration-300 ${
+        scrolled ? "bg-white shadow-md" : "bg-white/80 backdrop-blur"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        {/* Logo */}
+        <a href="/" className="flex items-center">
+          <img
+            src="https://html.webtend.net/omnivus/assets/img/logo-2.png"
+            alt="Omnivus Logo"
+            className="h-8 sm:h-10"
+          />
+        </a>
+
+        {/* Nav Links */}
+        <nav className="hidden md:flex space-x-6 text-sm font-medium text-slate-800">
+          <a href="/" className="hover:text-blue-600 transition">Home</a>
+          <a href="/about" className="hover:text-blue-600 transition">About</a>
+          <a href="/services" className="hover:text-blue-600 transition">Services</a>
+          <a href="/pages" className="hover:text-blue-600 transition">Pages</a>
+          <a href="/blog" className="hover:text-blue-600 transition">Blog</a>
+          <a href="/contact" className="hover:text-blue-600 transition">Contact</a>
+        </nav>
+
+        {/* CTA Button */}
+        <a
+          href="/quote"
+          className="ml-4 px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 transition"
+        >
+          Get A Quote
+        </a>
+      </div>
+    </header>
+
       <header className="p-10 text-center">
         <h1 className="text-6xl font-extrabold mb-4">Services</h1>
         <nav className="text-sm text-gray-500 flex justify-center gap-2">

@@ -101,8 +101,54 @@ const Home = () => {
     return <span>{count}</span>;
   };
 
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
+
+      <header
+      className={`w-full z-50 fixed top-0 left-0 transition-all duration-300 ${
+        scrolled ? "bg-white shadow-md" : "bg-white/80 backdrop-blur"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        {/* Logo */}
+        <a href="/" className="flex items-center">
+          <img
+            src="https://html.webtend.net/omnivus/assets/img/logo-2.png"
+            alt="Omnivus Logo"
+            className="h-8 sm:h-10"
+          />
+        </a>
+
+        {/* Nav Links */}
+        <nav className="hidden md:flex space-x-6 text-sm font-medium text-slate-800">
+          <a href="/" className="hover:text-blue-600 transition">Home</a>
+          <a href="/about" className="hover:text-blue-600 transition">About</a>
+          <a href="/services" className="hover:text-blue-600 transition">Services</a>
+          <a href="/pages" className="hover:text-blue-600 transition">Pages</a>
+          <a href="/blog" className="hover:text-blue-600 transition">Blog</a>
+          <a href="/contact" className="hover:text-blue-600 transition">Contact</a>
+        </nav>
+
+        {/* CTA Button */}
+        <a
+          href="/quote"
+          className="ml-4 px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 transition"
+        >
+          Free Consulting
+        </a>
+      </div>
+    </header>
+
       {/* Hero Section */}
       <section className="relative bg-gray-50 py-24">
   <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
