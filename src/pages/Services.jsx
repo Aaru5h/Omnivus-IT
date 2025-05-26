@@ -6,32 +6,32 @@ const servicesData = [
   {
     title: "UI/UX Design",
     image: "https://html.webtend.net/omnivus/assets/img/service-img/07.jpg",
-    description: "Designing interfaces that are intuitive and delightful for users across platforms."
+    description: "The functional goal of technical content is to help people use a product successfully. The business goal must tie the content."
   },
   {
     title: "IT Consultancy",
     image: "https://html.webtend.net/omnivus/assets/img/service-img/08.jpg",
-    description: "Expert advice to help you navigate complex IT challenges and digital transformation."
+    description: "The functional goal of technical content is to help people use a product successfully. The business goal must tie the content."
   },
   {
     title: "Technology Prof.",
-    image: "https://html.webtend.net/omnivus/assets/img/service-img/11.jpg",
-    description: "Professional support for integrating and managing emerging technologies."
+    image: "https://html.webtend.net/omnivus/assets/img/service-img/09.jpg ",
+    description: "The functional goal of technical content is to help people use a product successfully. The business goal must tie the content."
   },
   {
     title: "Web Development",
-    image: "https://html.webtend.net/omnivus/assets/img/service-img/09.jpg",
-    description: "Creating responsive, fast, and scalable websites tailored to your business."
+    image: "https://html.webtend.net/omnivus/assets/img/service-img/10.jpg ",
+    description: "The functional goal of technical content is to help people use a product successfully. The business goal must tie the content."
   },
   {
-    title: "App Development",
-    image: "https://html.webtend.net/omnivus/assets/img/service-img/12.jpg",
-    description: "Custom mobile solutions built with performance and user experience in mind."
+    title: "Web Development",
+    image: "https://html.webtend.net/omnivus/assets/img/service-img/11.jpg",
+    description: "The functional goal of technical content is to help people use a product successfully. The business goal must tie the content."
   },
   {
     title: "Game Design",
-    image: "https://html.webtend.net/omnivus/assets/img/service-img/10.jpg",
-    description: "Designing engaging game mechanics and captivating storylines for all platforms."
+    image: "https://html.webtend.net/omnivus/assets/img/service-img/12.jpg ",
+    description: "The functional goal of technical content is to help people use a product successfully. The business goal must tie the content."
   }
 ];
 
@@ -84,16 +84,32 @@ export default function Services() {
       </header>
 
       <section className="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-        {servicesData.map(({ title, image, description }) => (
-          <div key={title} className="relative cursor-pointer group rounded-lg overflow-hidden shadow-lg">
-            <img src={image} alt={title} className="w-full h-60 object-cover group-hover:brightness-75 transition duration-300" />
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent text-white">
-              <h3 className="text-lg font-bold">{title}</h3>
-              <p className="opacity-0 group-hover:opacity-100 transition-opacity mt-1 text-sm">{description}</p>
+        {servicesData.map((data, idx) => (
+          <div
+            key={idx}
+            className="relative group cursor-pointer overflow-hidden rounded-xl shadow-lg"
+          >
+            {/* Image with zoom on hover */}
+            <img
+              src={data.image}
+              alt={data.title}
+              className="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+
+            {/* Semi-dark overlay on hover */}
+            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+            {/* Text overlay at bottom, reveal on hover */}
+            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent text-white transition-all duration-500">
+              <h3 className="text-lg font-bold">{data.title}</h3>
+              <p className="opacity-0 group-hover:opacity-100 mt-1 text-sm transition-opacity duration-500">
+                {data.description}
+              </p>
             </div>
           </div>
         ))}
       </section>
+
 
       <section className="max-w-5xl mx-auto px-6 mb-20">
         {/* Section Title */}
