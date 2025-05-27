@@ -155,6 +155,28 @@ const testimonials = [
 ];
 
 
+const blogPosts = [
+    {
+      img: "https://html.webtend.net/omnivus/assets/img/portfolio/03.jpg",
+      title:
+        "Monthly Web Development Update Design Ethics & Clarity Over Solution",
+      date: "05 Aug 2019",
+    },
+    {
+      img: "https://html.webtend.net/omnivus/assets/img/latest-news/02.jpg",
+      title:
+        "Design System: What It And How To Create One Using Indigo Design Sence",
+      date: "05 Aug 2019",
+    },
+    {
+      img: "https://html.webtend.net/omnivus/assets/img/latest-news/03.jpg",
+      title:
+        "How We Used WebAssembly To Speed Up Our Web App By Omnivus",
+      date: "05 Aug 2019",
+    },
+  ];
+
+
 const Home = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [numbersAnimated, setnumbersAnimated] = useState(false);
@@ -570,87 +592,128 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Call to Action */}
+
+      <section className="relative py-20 bg-blue-600 bg-blend-overlay bg-cover bg-center"style={{ backgroundImage: "url('https://html.webtend.net/omnivus/assets/img/cta-bg/cta-bg.jpg')" }}>
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center text-white">
+            {/* Text Content */}
+            <div className="mb-6 md:mb-0 md:max-w-xl">
+              <h5 className="text-sm uppercase font-semibold text-white opacity-80 mb-2">Call to Action</h5>
+              <h2 className="text-4xl md:text-5xl font-extrabold leading-snug">Let’s Discuss With Us<br />Your Estimate.</h2>
+            </div>
+
+            {/* Contact Button */}
+            <a href="#contact" className="inline-flex items-center gap-2 bg-white text-blue-600 font-semibold px-6 py-3 rounded-md shadow-md hover:bg-blue-100 transition">
+              <svg
+                className="w-5 h-5 text-blue-600"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              </svg>
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </section>
+
+
+      {/* Read Our Blog */}
+
+      <section className="py-16 bg-white text-center">
+        <div className="max-w-7xl mx-auto px-4">
+          <p className="text-sm text-blue-600 uppercase mb-2">Latest News</p>
+          <h2 className="text-4xl font-bold mb-12">Read Our Latest News & Blog</h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+            {blogPosts.map((post, index) => (
+              <div
+                key={index}
+                className="shadow-lg rounded-lg overflow-hidden bg-white"
+              >
+                <img
+                  src={post.img}
+                  alt={`Blog ${index + 1}`}
+                  className="w-full h-56 object-cover"
+                />
+                <div className="p-5">
+                  <p className="text-sm text-blue-600">By Admin, {post.date}</p>
+                  <h3 className="text-xl font-semibold mt-2 mb-4">{post.title}</h3>
+                  <a
+                    href="#"
+                    className="text-blue-600 font-medium hover:underline"
+                  >
+                    Read More →
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       {/* footer Section */}
-      <section id="numbers-section" className="py-16 bg-gray-100">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto text-center">
-          {[
-            { icon: <CheckCircle />, label: "Projects Completed", value: 1200 },
-            { icon: <Star />, label: "Happy Clients", value: 850 },
-            { icon: <Calendar />, label: "Years of Experience", value: 10 },
-            { icon: <Code />, label: "Lines of Code", value: 500000 },
-          ].map((stat, idx) => (
-            <div key={idx} className="bg-white p-6 rounded-lg shadow">
-              <div className="text-blue-600 mb-2 mx-auto w-fit">{stat.icon}</div>
-              <div className="text-3xl font-bold">
-                <CountUp end={stat.value} />+
-              </div>
-              <p className="text-gray-600 mt-1">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-blue-600 text-white text-center">
-        <h2 className="text-3xl font-semibold mb-4">Ready to get started?</h2>
-        <p className="mb-6">Let us help you transform your business today.</p>
-        <button className="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition">
-          Contact Us
-        </button>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-800 text-white py-10">
-        <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <footer className="bg-slate-900 text-white py-16">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12">
+          {/* OmniVus Brand Section */}
           <div>
-            <h3 className="text-xl font-semibold mb-4">About Us</h3>
-            <p className="text-gray-400">
-              We are a team of experienced developers and designers building quality digital
-              solutions.
+            <h3 className="text-2xl font-bold mb-4">OmniVus.</h3>
+            <p className="text-sm text-slate-300 mb-4">
+              The web has changed a lot since Vitaly posted his first article back
+              in 2006. The team at Smashing has changed too, as have the things
+              that we bring to our community conferences, books, and our
+              membership added to the online magazine.
+            </p>
+            <p className="text-sm text-slate-400">
+              One thing that hasn’t changed is that we’re a small team — with most
+              of us not working
             </p>
           </div>
+
+          {/* Pages Section */}
           <div>
-            <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2 text-gray-400">
-              <li>
-                <Link to='/' className="hover:text-white" onClick={scrollToTop}>
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to='/services' className="hover:text-white">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link to='/blog' className="hover:text-white">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white">
-                  Contact
-                </a>
-              </li>
+            <h4 className="text-xl font-semibold mb-4">Pages</h4>
+            <ul className="space-y-2 text-slate-300 text-sm">
+              <li>› Home</li>
+              <li>› Services</li>
+              <li>› About</li>
+              <li>› Career</li>
+              <li>› Refund</li>
+              <li>› Terms</li>
+              <li>› Details</li>
+              <li>› Contact</li>
+              <li>› Business</li>
+              <li>› Affiliate</li>
             </ul>
           </div>
+
+          {/* Working Hours Section */}
           <div>
-            <h3 className="text-xl font-semibold mb-4">Contact Info</h3>
-            <ul className="space-y-2 text-gray-400">
-              <li className="flex items-center">
-                <Phone className="w-4 h-4 mr-2" /> +1 (123) 456-7890
-              </li>
-              <li className="flex items-center">
-                <Mail className="w-4 h-4 mr-2" /> info@example.com
-              </li>
-              <li className="flex items-center">
-                <MapPin className="w-4 h-4 mr-2" /> 123 Main Street, City
-              </li>
+            <h4 className="text-xl font-semibold mb-4">Working Hours</h4>
+            <ul className="text-sm text-slate-300 space-y-1">
+              <li>Monday - Friday: 7:00 - 17:00</li>
+              <li>Saturday: 7:00 - 12:00</li>
+              <li>Sunday and holidays: 8:00 - 10:00</li>
             </ul>
+            <p className="mt-4 text-sm">
+              <span className="font-semibold text-white">For more than 30 years</span>, IT
+              Service has been a reliable partner in the field of logistics and
+              cargo forwarding.
+            </p>
+            <a href="#" className="text-blue-400 mt-2 inline-block hover:underline">
+              › Discover More
+            </a>
           </div>
         </div>
-        <div className="mt-8 text-center text-gray-500">&copy; {new Date().getFullYear()} Omnivus IT Solutions. All rights reserved.</div>
+
+        {/* Bottom Bar */}
+        <div className="mt-12 text-center text-sm text-slate-500 border-t border-slate-700 pt-6">
+          Copyright By@ <span className="text-white font-semibold">WebTend</span> - 2021
+        </div>
       </footer>
 
       {/* Back to Top Button */}
