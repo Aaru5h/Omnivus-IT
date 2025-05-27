@@ -43,11 +43,13 @@ const Blog = () => {
                 key={blog.id}
                 className="rounded-xl border border-gray-200 p-6 shadow-md hover:shadow-lg transition duration-300"
               >
-                <img
-                  src={blog.bannerImage || 'https://via.placeholder.com/400x200'}
-                  alt={blog.title}
-                  className="mb-4 w-full rounded-lg object-contain max-h-[400px]"
-                />
+                {blog.bannerImage && (
+                  <img
+                    src={blog.bannerImage}
+                    alt={blog.title}
+                    className="mb-4 w-full rounded-lg object-contain max-h-[400px]"
+                  />
+                )}
 
                 <span className="inline-block bg-blue-100 text-blue-600 text-xs font-semibold px-3 py-1 rounded-full mb-3">
                   {blog.category}
@@ -78,7 +80,9 @@ const Blog = () => {
                     alt={blog.author.name}
                     className="w-8 h-8 rounded-full"
                   />
-                  <span className="text-sm text-gray-700 font-medium">by {blog.author.name}</span>
+                  <span className="text-sm text-gray-700 font-medium">
+                    by {blog.author.name}
+                  </span>
                 </div>
               </div>
             ))}

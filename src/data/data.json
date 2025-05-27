@@ -44,19 +44,20 @@
     },
 
     {
-      "id": 4,
-      "category": "BUSINESE",
-      "title": "In reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      "views": 232,
-      "comments": 35,
-      "date": "24th March 2019",
-      "bannerImage": "https://html.webtend.net/omnivus/assets/img/blog/blog-standard-1.jpg",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid-dunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
-      "author": {
-        "name": "Hetmayar",
-        "image": "https://html.webtend.net/omnivus/assets/img/blog/blog-girl.png"
-      }
+        "id": 4,
+        "category": "BUSINESE",
+        "title": "In reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "views": 232,
+        "comments": 35,
+        "date": "24th March 2019",
+        "bannerImage": "",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid-dunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+        "author": {
+            "name": "Hetmayar",
+            "image": "https://html.webtend.net/omnivus/assets/img/blog/blog-girl.png"
+        }
     },
+
     {
       "id": 5,
       "category": "BUSINESE",
