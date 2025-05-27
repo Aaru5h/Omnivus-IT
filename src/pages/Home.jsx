@@ -1,22 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  ArrowRight,
-  Code,
-  Shield,
-  Smartphone,
-  Database,
-  CheckCircle,
-  Star,
-  Calendar,
-  ArrowUp,
-  Facebook,
-  Instagram,
-  Linkedin,
-  Twitter,
-  Phone,
-  Mail,
-  MapPin,
-} from "lucide-react";
+import {ArrowRight, Code, Fingerprint, Smartphone, Database, CheckCircle, Star, Calendar, ArrowUp, Facebook, Instagram, Linkedin, Twitter, Phone, Mail, MapPin, Laptop} from "lucide-react";
 import { Link } from "react-router-dom";
 
 const teamMembers = [
@@ -49,6 +32,45 @@ const teamMembers = [
       linkedin: "https://linkedin.com/in/",
       instagram: "https://instagram.com/",
     },
+  },
+];
+
+
+const LaptopWithCodeIcon = () => (
+  <div className="relative w-14 h-14 mx-auto text-[#0AB39C]">
+    <Laptop size={56} className="absolute top-0 left-0" />
+    <Code size={24} className="absolute top-[12px] left-[16px]" />
+  </div>
+);
+
+const servicesData = [
+  {
+    title: "Web Development",
+    icon: <LaptopWithCodeIcon />,
+    color: "text-[#0AB39C]",
+    bg: "bg-[#D1FAE5]",
+    description: 'Sed ut perspiciatis unde omnis iste natus error volup',
+  },
+  {
+    title: "Security System",
+    icon: <Fingerprint size={36} />,
+    color: "text-[#6366F1]",
+    bg: "bg-indigo-100",
+    description: 'Sed ut perspiciatis unde omnis iste natus error volup',
+  },
+  {
+    title: "Web Development",
+    icon: <Smartphone size={36} />,
+    color: "text-[#F59E0B]",
+    bg: "bg-yellow-100",
+    description: 'Sed ut perspiciatis unde omnis iste natus error volup',
+  },
+  {
+    title: "Database Security",
+    icon: <Database size={36} />,
+    color: "text-[#F87171]",
+    bg: "bg-red-100",
+    description: 'Sed ut perspiciatis unde omnis iste natus error volup',
   },
 ];
 
@@ -123,7 +145,7 @@ const Home = () => {
         {/* Logo */}
         <a href="/" className="flex items-center">
           <img
-            src="https://html.webtend.net/omnivus/assets/img/logo-2.png"
+            src="https://html.webtend.net/omnivus/assets/img/logo.png"
             alt="Omnivus Logo"
             className="h-8 sm:h-10"
           />
@@ -189,32 +211,51 @@ const Home = () => {
 
 
       {/* Services Section - What We Do */}
-      <section className="py-16 bg-white">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-semibold">Our Services</h2>
-          <p className="text-gray-500">What we offer to help you grow your business</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 max-w-6xl mx-auto">
-          {[
-            { icon: <Code />, title: "Web Development" },
-            { icon: <Shield />, title: "Cybersecurity" },
-            { icon: <Smartphone />, title: "Mobile Apps" },
-            { icon: <Database />, title: "Data Solutions" },
-          ].map((service, idx) => (
-            <div
-              key={idx}
-              className="border p-6 rounded-lg shadow hover:shadow-lg transition-colors duration-300 cursor-pointer
-                hover:bg-blue-600 hover:text-white flex flex-col items-center text-center"
-            >
-              <div className="mb-4 text-blue-600 group-hover:text-white">{service.icon}</div>
-              <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-              <p className="text-gray-500 group-hover:text-white">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </p>
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h5 className="text-sm text-blue-600 font-semibold uppercase tracking-widest mb-2">
+                Services
+              </h5>
+              <h2 className="text-4xl font-bold text-gray-800">What We Do</h2>
             </div>
-          ))}
-        </div>
-      </section>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {servicesData.map((service, index) => (
+                <div
+                  key={index}
+                  className={`group relative p-6 rounded-2xl shadow-md overflow-hidden cursor-pointer transition duration-300 bg-white hover:bg-[#0A5EFF]`}
+                  style={{ minHeight: "320px" }} // makes the card taller like the reference
+                >
+                  {/* Background Dot Pattern */}
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-no-repeat bg-[length:120px_120px] bg-right-top transition-opacity duration-300 pointer-events-none"
+                    style={{
+                      backgroundImage: `url(https://html.webtend.net/omnivus/assets/img/shape/service-dot.png)`
+                    }}
+                  ></div>
+
+                  {/* Icon Circle */}
+                  <div
+                    className={`relative z-10 w-16 h-16 flex items-center justify-center rounded-full mb-5 text-2xl transition-all duration-300 ${service.bg} ${service.color} group-hover:bg-white group-hover:text-[#0A5EFF]`}
+                  >
+                    {service.icon}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="relative z-10 text-xl font-bold text-gray-800 group-hover:text-white mb-2">
+                    {service.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="relative z-10 text-sm text-gray-600 group-hover:text-white leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
       {/* Team Section */}
       <section className="py-16 bg-gray-100">
