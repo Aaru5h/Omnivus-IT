@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {ArrowRight, Code, Fingerprint, Smartphone, Database, CheckCircle, Star, Calendar, ArrowUp, Facebook, Instagram, Linkedin, Twitter, Phone, Mail, MapPin, Laptop} from "lucide-react";
+import {ArrowRight, Code, Fingerprint, Database, CheckCircle, Star, Calendar, ArrowUp, Facebook, Instagram, Linkedin, Twitter, Phone, Mail, MapPin, Laptop, MonitorSmartphone, Video} from "lucide-react";
 import { Link } from "react-router-dom";
 
 const teamMembers = [
@@ -37,15 +37,16 @@ const teamMembers = [
 
 
 const LaptopWithCodeIcon = () => (
-  <div className="relative w-14 h-14 mx-auto text-[#0AB39C]">
+  <div className="relative w-14 h-14 mx-auto">
     <Laptop size={56} className="absolute top-0 left-0" />
     <Code size={24} className="absolute top-[12px] left-[16px]" />
   </div>
 );
 
+
 const servicesData = [
   {
-    title: "Web Development",
+    title: "IT Solutions",
     icon: <LaptopWithCodeIcon />,
     color: "text-[#0AB39C]",
     bg: "bg-[#D1FAE5]",
@@ -60,7 +61,7 @@ const servicesData = [
   },
   {
     title: "Web Development",
-    icon: <Smartphone size={36} />,
+    icon: <MonitorSmartphone size={36} />,
     color: "text-[#F59E0B]",
     bg: "bg-yellow-100",
     description: 'Sed ut perspiciatis unde omnis iste natus error volup',
@@ -72,6 +73,16 @@ const servicesData = [
     bg: "bg-red-100",
     description: 'Sed ut perspiciatis unde omnis iste natus error volup',
   },
+];
+
+
+const desktopComputing = [
+  { id: 1, color: 'text-red-500', title: 'Desktop Computing' },
+  { id: 2, color: 'text-yellow-500', title: 'Desktop Computing' },
+  { id: 3, color: 'text-blue-500', title: 'Desktop Computing' },
+  { id: 4, color: 'text-blue-500', title: 'Desktop Computing' },
+  { id: 5, color: 'text-red-500', title: 'Desktop Computing' },
+  { id: 6, color: 'text-[#0AB39C]', title: 'Desktop Computing' },
 ];
 
 const Home = () => {
@@ -212,50 +223,141 @@ const Home = () => {
 
       {/* Services Section - What We Do */}
         <section className="py-20 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h5 className="text-sm text-blue-600 font-semibold uppercase tracking-widest mb-2">
-                Services
-              </h5>
-              <h2 className="text-4xl font-bold text-gray-800">What We Do</h2>
-            </div>
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h5 className="text-sm text-blue-600 font-semibold uppercase tracking-widest mb-2">
+              Services
+            </h5>
+            <h2 className="text-4xl font-bold text-gray-800">What We Do</h2>
+          </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {servicesData.map((service, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {servicesData.map((service, index) => (
+              <div
+                key={index}
+                className={`group relative px-6 py-10 rounded-2xl shadow-md overflow-hidden text-center transition duration-300 bg-white hover:bg-[#0A5EFF] flex flex-col items-center justify-center`}
+                style={{ minHeight: "320px" }}
+              >
+                {/* Dot background on hover */}
                 <div
-                  key={index}
-                  className={`group relative p-6 rounded-2xl shadow-md overflow-hidden cursor-pointer transition duration-300 bg-white hover:bg-[#0A5EFF]`}
-                  style={{ minHeight: "320px" }} // makes the card taller like the reference
+                  className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-no-repeat bg-[length:120px_120px] bg-right-top transition-opacity duration-300 pointer-events-none"
+                  style={{
+                    backgroundImage:
+                      "url(https://html.webtend.net/omnivus/assets/img/shape/service-dot.png)"
+                  }}
+                ></div>
+
+                {/* Icon */}
+                <div
+                  className={`relative z-10 w-20 h-20 flex items-center justify-center rounded-full mb-6 text-3xl transition-all duration-300 ${service.bg} ${service.color} group-hover:bg-white group-hover:text-[#0A5EFF]`}
                 >
-                  {/* Background Dot Pattern */}
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-no-repeat bg-[length:120px_120px] bg-right-top transition-opacity duration-300 pointer-events-none"
-                    style={{
-                      backgroundImage: `url(https://html.webtend.net/omnivus/assets/img/shape/service-dot.png)`
-                    }}
-                  ></div>
-
-                  {/* Icon Circle */}
-                  <div
-                    className={`relative z-10 w-16 h-16 flex items-center justify-center rounded-full mb-5 text-2xl transition-all duration-300 ${service.bg} ${service.color} group-hover:bg-white group-hover:text-[#0A5EFF]`}
-                  >
-                    {service.icon}
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="relative z-10 text-xl font-bold text-gray-800 group-hover:text-white mb-2">
-                    {service.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="relative z-10 text-sm text-gray-600 group-hover:text-white leading-relaxed">
-                    {service.description}
-                  </p>
+                  {service.icon}
                 </div>
-              ))}
+
+                {/* Title */}
+                <h3 className="relative z-10 text-xl font-semibold text-gray-800 group-hover:text-white mb-2">
+                  {service.title}
+                </h3>
+
+                {/* Description */}
+                <p className="relative z-10 text-sm text-gray-600 group-hover:text-white leading-relaxed max-w-[220px]">
+                  {service.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+      {/* Core Features Section */}
+      <section className="bg-[#f2f7ff] py-16">
+        <div className="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+          {/* Left Side - Images */}
+          <div className="relative w-full md:w-1/2">
+            {/* Main Image */}
+            <img
+              src="https://html.webtend.net/omnivus/assets/img/tile-gallery/tile-gallery-01.jpg"
+              alt="Main"
+              className="rounded-lg shadow-lg w-full h-auto"
+            />
+            {/* Overlapping Image - Slightly Lowered */}
+            <img
+              src="https://html.webtend.net/omnivus/assets/img/tile-gallery/tile-gallery-02.jpg"
+              alt="Team"
+              className="absolute bottom-[-250px] right-[-40px] w-[70%] rounded-lg shadow-xl border-4 border-white"
+            />
+          </div>
+
+          {/* Right Side - Text */}
+          <div className="w-full md:w-1/2">
+            <h4 className="text-sm text-blue-600 font-semibold uppercase mb-3">
+              Core Features
+            </h4>
+            <h2 className="text-4xl font-extrabold text-gray-900 leading-tight mb-4">
+              Get More Good Experience.
+            </h2>
+            <p className="text-lg text-blue-500 mb-4">
+              Our knowledge of computers will help us
+            </p>
+            <p className="text-gray-600 mb-6">
+              Does any industry face a more complex audience journey and marketing
+              sales process than B2B technology? Consider the number of people who
+              influence a sale, the length of the decision-making cycle, the
+              competing interests of the people who purchase, implement, manage,
+              and use the technology. It’s a lot of meaningful content here.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-4">
+              <a
+                href="#"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow transition duration-200"
+              >
+                Learn More
+              </a>
+              <a
+                href="#"
+                className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-3 px-6 rounded-lg shadow flex items-center gap-2 transition duration-200"
+              >
+                <Video className="w-5 h-5" />
+                Intro Video
+              </a>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
+
+
+      {/* Desktop Computing */}
+
+      <section className="bg-white py-20 mt-[280px]">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <p className="text-sm font-semibold text-blue-600 uppercase mb-2">Our Latest Services</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-12">
+            We Offer Better Solution <br /> For Your IT Business
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {desktopComputing.map(({ id, color, title }) => (
+            <div
+              key={id}
+              className="bg-[#f4f7fe] rounded-lg p-6 text-left"
+            >
+              <div className={`${color} mb-4 mx-auto w-14 h-14`}>
+                <LaptopWithCodeIcon />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">{title}</h3>
+              <p className="text-gray-600 text-sm">
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+                doloremque laudantiumtotam
+              </p>
+            </div>
+          ))}
+          </div>
+        </div>
+      </section>
+
+
 
       {/* Team Section */}
       <section className="py-16 bg-gray-100">
