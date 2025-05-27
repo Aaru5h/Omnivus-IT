@@ -1,14 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import blogsData from '../../data/data.json';  // adjust relative path if needed
 
 export const fetchBlogs = createAsyncThunk(
   'blog/fetchBlogs',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('/api/blogs'); // Replace with your actual API URL
-      return response.data;
+      return blogsData.blogs;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response?.data || 'Failed to fetch blogs');
+      return thunkAPI.rejectWithValue('Failed to fetch blogs from local JSON');
     }
   }
 );

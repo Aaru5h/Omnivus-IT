@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {ArrowRight, Code, Fingerprint, Database, CheckCircle, Star, Calendar, ArrowUp, Facebook, Instagram, Linkedin, Twitter, Phone, Mail, MapPin, Laptop, MonitorSmartphone, Video, MessageCircle} from "lucide-react";
+import {ArrowRight, Code, Fingerprint, Database, CheckCircle, Star, Calendar, ArrowUp, Facebook, Instagram, Linkedin, Twitter, Phone, Mail, MapPin, Laptop, MonitorSmartphone, Video, MessageCircleMore} from "lucide-react";
 import { Link } from "react-router-dom";
 
 const LaptopWithCodeIcon = () => (
@@ -508,7 +508,7 @@ const Home = () => {
               <div
                 className={`mx-auto w-12 h-12 flex items-center justify-center rounded-full mb-4 ${color}`}
               >
-                <MessageCircle className="text-white w-6 h-6" />
+                <MessageCircleMore className="text-white w-6 h-6" />
               </div>
 
               {/* Number */}

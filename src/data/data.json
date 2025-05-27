@@ -1,0 +1,90 @@
+{
+  "blogs": [
+    {
+      "id": 1,
+      "category": "BUSINESE",
+      "title": "Lorem ipsum dolor sit amet, consecte cing elit, sed do eiusmod tempor.",
+      "views": 232,
+      "comments": 35,
+      "date": "24th March 2019",
+      "bannerImage": "https://html.webtend.net/omnivus/assets/img/blog/blog-standard-1.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidi-dunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+      "author": {
+        "name": "Hetmayar",
+        "image": "https://html.webtend.net/omnivus/assets/img/blog/blog-girl.png"
+      }
+    },
+    {
+      "id": 2,
+      "category": "BUSINESE",
+      "title": "Adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+      "views": 232,
+      "comments": 35,
+      "date": "24th March 2019",
+      "bannerImage": "https://html.webtend.net/omnivus/assets/img/blog/blog-standard-3.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid-dunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+      "author": {
+        "name": "Hetmayar",
+        "image": "https://html.webtend.net/omnivus/assets/img/blog/blog-girl.png"
+      }
+    },
+    {
+      "id": 3,
+      "category": "BUSINESE",
+      "title": "Magna aliqua. Ut enim ad minim venia m, quis nostrud exercitation ullamco",
+      "views": 232,
+      "comments": 35,
+      "date": "24th March 2019",
+      "bannerImage": "https://html.webtend.net/omnivus/assets/img/blog/blog-standard-2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid-dunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+      "author": {
+        "name": "Hetmayar",
+        "image": "https://html.webtend.net/omnivus/assets/img/blog/blog-girl.png"
+      }
+    },
+
+    {
+      "id": 4,
+      "category": "BUSINESE",
+      "title": "In reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "views": 232,
+      "comments": 35,
+      "date": "24th March 2019",
+      "bannerImage": "https://html.webtend.net/omnivus/assets/img/blog/blog-standard-1.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid-dunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+      "author": {
+        "name": "Hetmayar",
+        "image": "https://html.webtend.net/omnivus/assets/img/blog/blog-girl.png"
+      }
+    },
+    {
+      "id": 5,
+      "category": "BUSINESE",
+      "title": "Magna aliqua. Ut enim ad minim venia m, quis nostrud exercitation ullamco",
+      "views": 232,
+      "comments": 35,
+      "date": "24th March 2019",
+      "bannerImage": "https://html.webtend.net/omnivus/assets/img/blog/blog-standard-3.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid-dunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+      "author": {
+        "name": "Hetmayar",
+        "image": "https://html.webtend.net/omnivus/assets/img/blog/blog-girl.png"
+      }
+    },
+    {
+      "id": 6,
+      "category": "BUSINESE",
+      "title": "Magna aliqua. Ut enim ad minim venia m, quis nostrud exercitation ullamco",
+      "views": 232,
+      "comments": 35,
+      "date": "24th March 2019",
+      "bannerImage": "https://html.webtend.net/omnivus/assets/img/blog/blog-standard-2.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid-dunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+      "author": {
+        "name": "Hetmayar",
+        "image": "https://html.webtend.net/omnivus/assets/img/blog/blog-girl.png"
+      }
+    }
+    
+  ]
+}

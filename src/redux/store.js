@@ -1,13 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import thunk from 'redux-thunk'; // Import thunk
-import blogReducer from './blog/blogSlice'; // Your blog slice
+import blogReducer from './blog/blogSlice';
 
 const store = configureStore({
   reducer: {
     blog: blogReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(thunk), // Add thunk here
+  // No need to add middleware manually — thunk is included by default
 });
 
 export default store;
