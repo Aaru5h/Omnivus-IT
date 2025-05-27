@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {ArrowRight, Code, Fingerprint, Database, CheckCircle, Star, Calendar, ArrowUp, Facebook, Instagram, Linkedin, Twitter, Phone, Mail, MapPin, Laptop, MonitorSmartphone, Video} from "lucide-react";
+import {ArrowRight, Code, Fingerprint, Database, CheckCircle, Star, Calendar, ArrowUp, Facebook, Instagram, Linkedin, Twitter, Phone, Mail, MapPin, Laptop, MonitorSmartphone, Video, MessageCircle} from "lucide-react";
 import { Link } from "react-router-dom";
 
 const teamMembers = [
@@ -85,26 +85,76 @@ const desktopComputing = [
   { id: 6, color: 'text-[#0AB39C]', title: 'Desktop Computing' },
 ];
 
+
+const caseStudies = [
+  {
+    id: 1,
+    title: "How To Improve IT knowledge",
+    subtitle: "IT / Solutions",
+    image: "https://html.webtend.net/omnivus/assets/img/portfolio/01.jpg",
+  },
+  {
+    id: 2,
+    title: "How To Improve IT knowledge",
+    subtitle: "IT / Solutions",
+    image: "https://html.webtend.net/omnivus/assets/img/portfolio/02.jpg",
+  },
+  {
+    id: 3,
+    title: "How To Improve IT knowledge",
+    subtitle: "IT / Solutions",
+    image: "https://html.webtend.net/omnivus/assets/img/portfolio/03.jpg",
+  },
+]
+
+const numbers = [
+  {
+    number: "280",
+    label: "Our Branches",
+    color: "bg-emerald-500",
+    offset: "translate-y-[-12px]",
+  },
+  {
+    number: "782",
+    label: "Projects Done",
+    color: "bg-yellow-400",
+    offset: "translate-y-[0px]",
+  },
+  {
+    number: "1M",
+    label: "Happy Users",
+    color: "bg-red-500",
+    offset: "translate-y-[-12px]",
+  },
+  {
+    number: "100",
+    label: "Awards",
+    color: "bg-blue-500",
+    offset: "translate-y-[0px]",
+  },
+];
+
+
 const Home = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
-  const [statsAnimated, setStatsAnimated] = useState(false);
+  const [numbersAnimated, setnumbersAnimated] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 300);
 
-      const statsSection = document.getElementById("stats-section");
-      if (statsSection) {
-        const rect = statsSection.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0 && !statsAnimated) {
-          setStatsAnimated(true);
+      const numbersSection = document.getElementById("numbers-section");
+      if (numbersSection) {
+        const rect = numbersSection.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0 && !numbersAnimated) {
+          setnumbersAnimated(true);
         }
       }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [statsAnimated]);
+  }, [numbersAnimated]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -114,7 +164,7 @@ const Home = () => {
     const [count, setCount] = useState(0);
 
     useEffect(() => {
-      if (!statsAnimated) return;
+      if (!numbersAnimated) return;
 
       let start = 0;
       const increment = end / (duration / 16);
@@ -129,7 +179,7 @@ const Home = () => {
       }, 16);
 
       return () => clearInterval(timer);
-    }, [end, duration, statsAnimated]);
+    }, [end, duration, numbersAnimated]);
 
     return <span>{count}</span>;
   };
@@ -327,7 +377,6 @@ const Home = () => {
         </div>
       </section>
 
-
       {/* Desktop Computing */}
 
       <section className="bg-white py-20 mt-[280px]">
@@ -357,6 +406,78 @@ const Home = () => {
         </div>
       </section>
 
+
+      {/* Casestudy Section */}
+
+      <section className="bg-blue-600 text-white px-6 py-16">
+        {/* Heading */}
+        <div className="max-w-6xl mx-auto text-center mb-12">
+          <p className="uppercase tracking-widest text-sm mb-2">Latest Case Studies</p>
+          <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+            Read Our Recent <br /> Case Studies
+          </h2>
+        </div>
+
+        {/* Case Study Cards */}
+        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-16">
+          {caseStudies.map(({ id, title, subtitle, image }) => (
+            <div
+              key={id}
+              className="relative group overflow-hidden rounded-lg cursor-pointer"
+            >
+              {/* Image (z-0) */}
+              <img
+                src={image}
+                alt={title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 z-0"
+              />
+
+              {/* Overlay (z-10 but partially transparent) */}
+              <div className="absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-500 opacity-0 group-hover:opacity-100 z-10" />
+
+              {/* Text Content (z-20 so it's above overlay) */}
+              <div className="absolute bottom-4 left-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:translate-y-0 translate-y-4">
+                <p className="text-sm text-gray-300">{subtitle}</p>
+                <h3 className="text-xl font-bold leading-tight">{title}</h3>
+              </div>
+
+              {/* Arrow Button (z-20 as well) */}
+              <div className="absolute bottom-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:translate-y-0 translate-y-4">
+                <div className="bg-white text-blue-600 p-2 rounded-full shadow hover:bg-gray-100">
+                  <ArrowRight size={18} />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      
+      {/* Numbers Section */}
+
+     <section className="bg-[#0c1c3f] py-20">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          {numbers.map(({ number, label, color, offset }, index) => (
+            <div
+              key={index}
+              className={`border border-[#2c3c5f] rounded-lg p-8 ${offset} bg-[#0c1c3f]`}
+            >
+              {/* Icon Circle */}
+              <div
+                className={`mx-auto w-12 h-12 flex items-center justify-center rounded-full mb-4 ${color}`}
+              >
+                <MessageCircle className="text-white w-6 h-6" />
+              </div>
+
+              {/* Number */}
+              <div className="text-3xl font-bold text-white mb-1">{number}</div>
+
+              {/* Label */}
+              <p className="text-sm text-white">{label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
 
       {/* Team Section */}
@@ -409,8 +530,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section id="stats-section" className="py-16 bg-gray-100">
+      {/* numbers Section */}
+      <section id="numbers-section" className="py-16 bg-gray-100">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto text-center">
           {[
             { icon: <CheckCircle />, label: "Projects Completed", value: 1200 },
