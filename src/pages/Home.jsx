@@ -2,40 +2,6 @@ import React, { useState, useEffect } from "react";
 import {ArrowRight, Code, Fingerprint, Database, CheckCircle, Star, Calendar, ArrowUp, Facebook, Instagram, Linkedin, Twitter, Phone, Mail, MapPin, Laptop, MonitorSmartphone, Video, MessageCircle} from "lucide-react";
 import { Link } from "react-router-dom";
 
-const teamMembers = [
-  {
-    name: "Alice Johnson",
-    photo: "https://randomuser.me/api/portraits/women/68.jpg",
-    socials: {
-      facebook: "https://facebook.com/",
-      twitter: "https://twitter.com/",
-      linkedin: "https://linkedin.com/in/",
-      instagram: "https://instagram.com/",
-    },
-  },
-  {
-    name: "Bob Smith",
-    photo: "https://randomuser.me/api/portraits/men/32.jpg",
-    socials: {
-      facebook: "https://facebook.com/",
-      twitter: "https://twitter.com/",
-      linkedin: "https://linkedin.com/in/",
-      instagram: "https://instagram.com/",
-    },
-  },
-  {
-    name: "Catherine Lee",
-    photo: "https://randomuser.me/api/portraits/women/44.jpg",
-    socials: {
-      facebook: "https://facebook.com/",
-      twitter: "https://twitter.com/",
-      linkedin: "https://linkedin.com/in/",
-      instagram: "https://instagram.com/",
-    },
-  },
-];
-
-
 const LaptopWithCodeIcon = () => (
   <div className="relative w-14 h-14 mx-auto">
     <Laptop size={56} className="absolute top-0 left-0" />
@@ -131,6 +97,60 @@ const numbers = [
     label: "Awards",
     color: "bg-blue-500",
     offset: "translate-y-[0px]",
+  },
+];
+
+
+const teamMembers = [
+  {
+    name: 'Harry Garrett',
+    title: 'Design Expert',
+    image: 'https://html.webtend.net/omnivus/assets/img/team/team-01.jpg',
+  },
+  {
+    name: 'Doris Jordan',
+    title: 'Design Expert',
+    image: 'https://html.webtend.net/omnivus/assets/img/team/team-02.jpg',
+  },
+  {
+    name: 'Harry Garrett',
+    title: 'Design Expert',
+    image: 'https://html.webtend.net/omnivus/assets/img/team/team-03.jpg',
+  },
+  {
+    name: 'Johnny Ramirez',
+    title: 'Design Expert',
+    image: 'https://html.webtend.net/omnivus/assets/img/team/team-04.jpg',
+  },
+  {
+    name: 'Diana Wagner',
+    title: 'Design Expert',
+    image: 'https://html.webtend.net/omnivus/assets/img/team/team-05.jpg',
+  },
+];
+
+
+const testimonials = [
+  {
+    name: 'Eugene Freeman',
+    position: 'Tincidunt',
+    image: 'https://html.webtend.net/omnivus/assets/img/testimonials/01.png',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at est id leo luctus gravida a in ipsum.',
+    borderColor: 'border-blue-600',
+  },
+  {
+    name: 'Kelly Coleman',
+    position: 'Nulla nec',
+    image: 'https://html.webtend.net/omnivus/assets/img/testimonials/02.png',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at est id leo luctus gravida a in ipsum.',
+    borderColor: 'border-green-600',
+  },
+  {
+    name: 'Philip Mendez',
+    position: 'Consectetur',
+    image: 'https://html.webtend.net/omnivus/assets/img/testimonials/03.png',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at est id leo luctus gravida a in ipsum.',
+    borderColor: 'border-red-600',
   },
 ];
 
@@ -481,56 +501,77 @@ const Home = () => {
 
 
       {/* Team Section */}
-      <section className="py-16 bg-gray-100">
+      <section className="py-16 bg-white">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-semibold">Meet Our Team</h2>
-          <p className="text-gray-500">Our talented and dedicated professionals</p>
+          <p className="text-blue-600 font-semibold uppercase tracking-widest">Our Team Member</p>
+          <h2 className="text-4xl font-extrabold text-gray-900 mt-2">Meet Our Exclusive Leadership</h2>
         </div>
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-4">
-          {teamMembers.map(({ name, photo, socials }, idx) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 px-4 md:px-8">
+          {teamMembers.map((member, index) => (
             <div
-              key={idx}
-              className="relative group cursor-pointer rounded-lg shadow-lg overflow-hidden bg-white"
+              key={index}
+              className="relative group rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
-              {/* Image with fade-in */}
               <img
-                src={photo}
-                alt={name}
-                className="w-full h-72 object-cover rounded-t-lg transition-opacity duration-700 opacity-0 group-hover:opacity-80 fade-in"
-                onLoad={(e) => e.currentTarget.classList.remove("opacity-0")}
+                src={member.image}
+                alt={member.name}
+                className="w-full h-auto"
               />
-              {/* Overlay with social icons on hover */}
-              <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <h3 className="text-white text-xl mb-4">{name}</h3>
-                <div className="flex space-x-4 text-white">
-                  {socials.facebook && (
-                    <a href={socials.facebook} target="_blank" rel="noreferrer" className="hover:text-blue-500">
-                      <Facebook />
-                    </a>
-                  )}
-                  {socials.twitter && (
-                    <a href={socials.twitter} target="_blank" rel="noreferrer" className="hover:text-blue-400">
-                      <Twitter />
-                    </a>
-                  )}
-                  {socials.linkedin && (
-                    <a href={socials.linkedin} target="_blank" rel="noreferrer" className="hover:text-blue-700">
-                      <Linkedin />
-                    </a>
-                  )}
-                  {socials.instagram && (
-                    <a href={socials.instagram} target="_blank" rel="noreferrer" className="hover:text-pink-500">
-                      <Instagram />
-                    </a>
-                  )}
+              <div className="absolute inset-0 bg-white/70 backdrop-blur-sm opacity-0 group-hover:opacity-100 flex items-end justify-center transition-opacity duration-300">
+                <div className="flex gap-3 mb-4">
+                  <div className="bg-white rounded-full p-2 shadow-md hover:bg-blue-100 cursor-pointer">
+                    <Facebook className="w-4 h-4 text-blue-600" />
+                  </div>
+                  <div className="bg-white rounded-full p-2 shadow-md hover:bg-blue-100 cursor-pointer">
+                    <Twitter className="w-4 h-4 text-blue-600" />
+                  </div>
+                  <div className="bg-white rounded-full p-2 shadow-md hover:bg-blue-100 cursor-pointer">
+                    <Instagram className="w-4 h-4 text-blue-600" />
+                  </div>
                 </div>
+              </div>
+              <div className="text-center bg-white py-4">
+                <h4 className="font-bold text-lg text-gray-800">{member.name}</h4>
+                <p className="text-sm text-gray-500">{member.title}</p>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* numbers Section */}
+
+      {/* Testimonial Section */}
+      
+      <section className="bg-gray-50 py-20" style={{ backgroundColor: '#f7faff' }}>
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <h4 className="text-blue-600 font-semibold uppercase text-sm mb-2">Client Testimonials</h4>
+          <h2 className="text-4xl font-extrabold text-gray-900 mb-12">What our clients say</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={index}
+                className={`bg-white p-6 rounded-lg shadow-md border-t-4 ${testimonial.borderColor}`}
+              >
+                <p className="text-gray-600 mb-6">{testimonial.text}</p>
+                <div className="flex items-center gap-4">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+                  <div className="text-left">
+                    <h5 className="text-gray-900 font-semibold">{testimonial.name}</h5>
+                    <p className="text-sm text-gray-500">{testimonial.position}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+      {/* footer Section */}
       <section id="numbers-section" className="py-16 bg-gray-100">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto text-center">
           {[

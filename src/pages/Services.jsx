@@ -43,10 +43,10 @@ const pricingPlans = {
     { title: "Platinum", price: "$99 / month" }
   ],
   yearly: [
-    { title: "Early Birds", price: "$90 / year" },
-    { title: "Team", price: "$320 / year" },
-    { title: "Personal", price: "$690 / year" },
-    { title: "Platinum", price: "$990 / year" }
+    { title: "Early Birds", price: "$56 / year" },
+    { title: "Team", price: "$99 / year" },
+    { title: "Personal", price: "$133 / year" },
+    { title: "Platinum", price: "$599 / year" }
   ]
 };
 
