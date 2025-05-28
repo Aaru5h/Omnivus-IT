@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBlogs } from '../redux/blog/blogAPI';
-import { Calendar, Eye, MessageCircle, Search, Facebook, Linkedin, Twitter, Instagram } from 'lucide-react';
+import { Calendar, Eye, MessageCircle, Search, Facebook, Linkedin, Twitter, Instagram, ArrowUp } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPinterest, faBehance, faFacebook, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
@@ -72,9 +72,21 @@ const Blog = () => {
   const dispatch = useDispatch();
   const { posts, loading, error } = useSelector((state) => state.blog);
 
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+  const [scrolled, setScrolled] = useState(false);
+
   useEffect(() => {
     dispatch(fetchBlogs());
   }, [dispatch]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     // <section className="py-16 lg:py-20">
@@ -84,31 +96,51 @@ const Blog = () => {
           <span>786 875 864 75 7</span>
         </div>
 
-        <header className="bg-white shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center py-4">
-              <div className="flex items-center space-x-2">
-                <img src="https://html.webtend.net/omnivus/assets/img/logo-2.png" alt="OmniVus Logo" className="h-8 sm:h-10" />
-                <p className="text-xs text-gray-500">IT Service & Technology</p>
-              </div>
-              <nav className="hidden md:flex items-center space-x-6 font-medium text-gray-700">
-                <a href="#" className="hover:text-blue-600">HOME</a>
-                <a href="#" className="hover:text-blue-600">ABOUT</a>
-                <a href="#" className="hover:text-blue-600">SERVICES</a>
-                <a href="#" className="hover:text-blue-600">PAGES</a>
-                <a href="#" className="text-blue-600 font-semibold">BLOG</a>
-                <a href="#" className="hover:text-blue-600">CONTACT</a>
-              </nav>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">Get A Quote</button>
-            </div>
-          </div>
+        <header
+      className={`w-full z-50 fixed top-0 left-0 transition-all duration-300 ${
+        scrolled ? "bg-white shadow-md" : "bg-white/80 backdrop-blur"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        {/* Logo */}
+        <a href="/" className="flex items-center">
+          <img
+            src="https://html.webtend.net/omnivus/assets/img/logo-2.png"
+            alt="Omnivus Logo"
+            className="h-8 sm:h-10"
+          />
+        </a>
 
-          {/* Header Content */}
-          <div className="text-center py-20">
-            <h1 className="text-4xl sm:text-5xl font-bold text-[#0f172a]">News Standard</h1>
-            <p className="text-blue-600 mt-2">Home | News</p>
-          </div>
-        </header>
+        {/* Nav Links */}
+        <nav className="hidden md:flex space-x-6 text-sm font-medium text-slate-800">
+          <a href="/" className="hover:text-blue-600 transition">Home</a>
+          <a href="/about" className="hover:text-blue-600 transition">About</a>
+          <a href="/services" className="hover:text-blue-600 transition">Services</a>
+          <a href="/pages" className="hover:text-blue-600 transition">Pages</a>
+          <a href="/blog" className="hover:text-blue-600 transition">Blog</a>
+          <a href="/contact" className="hover:text-blue-600 transition">Contact</a>
+        </nav>
+
+        {/* CTA Button */}
+        <a
+          href="/quote"
+          className="ml-4 px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 transition"
+        >
+          Get A Quote
+        </a>
+      </div>
+    </header>
+
+
+      <header className="p-10 text-center">
+        <h1 className="text-6xl font-extrabold mb-4">News Standard</h1>
+        <nav className="text-sm text-gray-500 flex justify-center gap-2">
+          <span className="hover:text-blue-600 cursor-pointer">Home</span>
+          <span>|</span>
+          <span className="font-semibold">News</span>
+        </nav>
+      </header>
+
 
         <div className="grid lg:grid-cols-3 gap-10">
           {/* Blog Posts */}
@@ -424,11 +456,16 @@ const Blog = () => {
       <div className="absolute bottom-6 right-6 space-y-2">
         <div className="w-5 h-5 bg-cyan-300 rounded-full"></div>
         <div className="w-8 h-8 bg-blue-700 rounded-full"></div>
-        <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition cursor-pointer">
-          <span className="text-white text-lg">↑</span>
-        </div>
       </div>
     </footer>
+
+    <button
+        onClick={scrollToTop}
+        className="fixed bottom-10 right-10 bg-blue-600 text-white rounded-full p-3 shadow-lg hover:bg-blue-700 transition"
+        aria-label="Scroll to top"
+      >
+        <ArrowUp size={24} />
+      </button>
         
   </div>
 
