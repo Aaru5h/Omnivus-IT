@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {ArrowRight, Code, Fingerprint, Database, CheckCircle, Star, Calendar, ArrowUp, Facebook, Instagram, Linkedin, Twitter, Phone, Mail, MapPin, Laptop, MonitorSmartphone, Video, MessageCircleMore} from "lucide-react";
+import {ArrowRight, Code, Fingerprint, Database, CheckCircle, Star, Calendar, ArrowUp, Facebook, Instagram, Linkedin, Twitter, Phone, Mail, MapPin, Laptop, MonitorSmartphone, Video, MessageCircleMore, Menu, X} from "lucide-react";
 import { Link } from "react-router-dom";
 
 const LaptopWithCodeIcon = () => (
@@ -227,7 +227,10 @@ const Home = () => {
   };
 
   const [scrolled, setScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  
 
+  // Track scroll to toggle header style
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -236,43 +239,139 @@ const Home = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Toggle mobile menu open/close
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+
   return (
     <div className="min-h-screen bg-white">
 
       <header
-      className={`w-full z-50 fixed top-0 left-0 transition-all duration-300 ${
-        scrolled ? "bg-white shadow-md" : "bg-white/80 backdrop-blur"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <a href="/" className="flex items-center">
-          <img
-            src="https://html.webtend.net/omnivus/assets/img/logo.png"
-            alt="Omnivus Logo"
-            className="h-8 sm:h-10"
-          />
-        </a>
+        className={`w-full z-50 fixed top-0 left-0 transition-all duration-300 ${
+          scrolled ? "bg-white shadow-md" : "bg-white/80 backdrop-blur"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          {/* Logo */}
+          <Link
+            to="/"
+            onClick={() => {
+              scrollToTop();
+              setIsOpen(false);
+            }}
+            className="flex items-center"
+          >
+            <img
+              src="https://html.webtend.net/omnivus/assets/img/logo.png"
+              alt="Omnivus Logo"
+              className="h-8 sm:h-10"
+            />
+          </Link>
 
-        {/* Nav Links */}
-        <nav className="hidden md:flex space-x-6 text-sm font-medium text-slate-800">
-          <Link to="/" className="hover:text-blue-600 transition">Home</Link>
-          <Link to="/about" className="hover:text-blue-600 transition">About</Link>
-          <Link to="/services" className="hover:text-blue-600 transition">Services</Link>
-          <Link to="/pages" className="hover:text-blue-600 transition">Pages</Link>
-          <Link to="/blog" className="hover:text-blue-600 transition">Blog</Link>
-          <Link to="/contact" className="hover:text-blue-600 transition">Contact</Link>
-        </nav>
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex space-x-6 text-sm font-medium text-slate-800">
+            <Link to="/" onClick={scrollToTop} className="hover:text-blue-600 transition">Home</Link>
+            <Link to="/about" onClick={scrollToTop} className="hover:text-blue-600 transition">About</Link>
+            <Link to="/services" onClick={scrollToTop} className="hover:text-blue-600 transition">Services</Link>
+            <Link to="/pages" onClick={scrollToTop} className="hover:text-blue-600 transition">Pages</Link>
+            <Link to="/blog" onClick={scrollToTop} className="hover:text-blue-600 transition">Blog</Link>
+            <Link to="/contact" onClick={scrollToTop} className="hover:text-blue-600 transition">Contact</Link>
+          </nav>
 
-        {/* CTA Button */}
-        <a
-          href="/quote"
-          className="ml-4 px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 transition"
-        >
-          Free Consulting
-        </a>
-      </div>
-    </header>
+          {/* Mobile Hamburger */}
+          <div className="md:hidden">
+            <button
+              onClick={toggleMenu}
+              className="text-slate-800 hover:text-blue-600 focus:outline-none"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+
+          {/* CTA Button */}
+          <a
+            href="/quote"
+            className="ml-4 px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 transition"
+          >
+            Free Consulting
+          </a>
+        </div>
+
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="md:hidden bg-white shadow-md px-6 pb-4 pt-2 space-y-2 text-sm font-medium text-slate-800">
+            <Link
+              to="/"
+              onClick={() => {
+                toggleMenu();
+                scrollToTop();
+              }}
+              className="block hover:text-blue-600 transition"
+            >
+              Home
+            </Link>
+            <Link
+              to="/about"
+              onClick={() => {
+                toggleMenu();
+                scrollToTop();
+              }}
+              className="block hover:text-blue-600 transition"
+            >
+              About
+            </Link>
+            <Link
+              to="/services"
+              onClick={() => {
+                toggleMenu();
+                scrollToTop();
+              }}
+              className="block hover:text-blue-600 transition"
+            >
+              Services
+            </Link>
+            <Link
+              to="/pages"
+              onClick={() => {
+                toggleMenu();
+                scrollToTop();
+              }}
+              className="block hover:text-blue-600 transition"
+            >
+              Pages
+            </Link>
+            <Link
+              to="/blog"
+              onClick={() => {
+                toggleMenu();
+                scrollToTop();
+              }}
+              className="block hover:text-blue-600 transition"
+            >
+              Blog
+            </Link>
+            <Link
+              to="/contact"
+              onClick={() => {
+                toggleMenu();
+                scrollToTop();
+              }}
+              className="block hover:text-blue-600 transition"
+            >
+              Contact
+            </Link>
+
+            <a
+              href="/quote"
+              onClick={toggleMenu}
+              className="block mt-2 px-4 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 transition"
+            >
+              Free Consulting
+            </a>
+          </div>
+        )}
+      </header>
 
       {/* Hero Section */}
       <section

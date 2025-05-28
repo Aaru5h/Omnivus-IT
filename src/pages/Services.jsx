@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const servicesData = [
@@ -70,9 +70,13 @@ const posts = [
 
 export default function Services() {
   const [planType, setPlanType] = useState("monthly");
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+   const scrollToTop = () =>
+    window.scrollTo({ top: 0, behavior: "smooth" });
 
   const [scrolled, setScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -92,32 +96,81 @@ export default function Services() {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <a href="/" className="flex items-center">
+        <Link to="/" onClick={scrollToTop} className="flex items-center">
           <img
             src="https://html.webtend.net/omnivus/assets/img/logo-2.png"
             alt="Omnivus Logo"
             className="h-8 sm:h-10"
           />
-        </a>
+        </Link>
 
-        {/* Nav Links */}
+        {/* Desktop Nav */}
         <nav className="hidden md:flex space-x-6 text-sm font-medium text-slate-800">
-         <Link to="/" className="hover:text-blue-600 transition">Home</Link>
-          <Link to="/about" className="hover:text-blue-600 transition">About</Link>
-          <Link to="/services" className="hover:text-blue-600 transition">Services</Link>
-          <Link to="/pages" className="hover:text-blue-600 transition">Pages</Link>
-          <Link to="/blog" className="hover:text-blue-600 transition">Blog</Link>
-          <Link to="/contact" className="hover:text-blue-600 transition">Contact</Link>
+          <Link to="/" onClick={scrollToTop} className="hover:text-blue-600 transition">
+            Home
+          </Link>
+          <Link to="/about" onClick={scrollToTop} className="hover:text-blue-600 transition">
+            About
+          </Link>
+          <Link to="/services" onClick={scrollToTop} className="hover:text-blue-600 transition">
+            Services
+          </Link>
+          <Link to="/pages" onClick={scrollToTop} className="hover:text-blue-600 transition">
+            Pages
+          </Link>
+          <Link to="/blog" onClick={scrollToTop} className="hover:text-blue-600 transition">
+            Blog
+          </Link>
+          <Link to="/contact" onClick={scrollToTop} className="hover:text-blue-600 transition">
+            Contact
+          </Link>
         </nav>
+
+        {/* Mobile Hamburger */}
+        <div className="md:hidden">
+          <button onClick={toggleMenu} className="text-slate-800 hover:text-blue-600">
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
 
         {/* CTA Button */}
         <a
           href="/quote"
-          className="ml-4 px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 transition"
+          className="hidden md:inline-block ml-4 px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 transition"
         >
           Get A Quote
         </a>
       </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="md:hidden bg-white shadow-md px-6 pb-4 pt-2 space-y-2 text-sm font-medium text-slate-800">
+          <Link to="/" onClick={() => { toggleMenu(); scrollToTop(); }} className="block hover:text-blue-600 transition">
+            Home
+          </Link>
+          <Link to="/about" onClick={() => { toggleMenu(); scrollToTop(); }} className="block hover:text-blue-600 transition">
+            About
+          </Link>
+          <Link to="/services" onClick={() => { toggleMenu(); scrollToTop(); }} className="block hover:text-blue-600 transition">
+            Services
+          </Link>
+          <Link to="/pages" onClick={() => { toggleMenu(); scrollToTop(); }} className="block hover:text-blue-600 transition">
+            Pages
+          </Link>
+          <Link to="/blog" onClick={() => { toggleMenu(); scrollToTop(); }} className="block hover:text-blue-600 transition">
+            Blog
+          </Link>
+          <Link to="/contact" onClick={() => { toggleMenu(); scrollToTop(); }} className="block hover:text-blue-600 transition">
+            Contact
+          </Link>
+          <a
+            href="/quote"
+            className="block mt-2 px-4 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 transition"
+          >
+            Get A Quote
+          </a>
+        </div>
+      )}
     </header>
 
       <header className="p-10 text-center">
