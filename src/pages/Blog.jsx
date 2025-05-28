@@ -1,7 +1,72 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBlogs } from '../redux/blog/blogAPI';
-import { Calendar, Eye, MessageCircle } from 'lucide-react';
+import { Calendar, Eye, MessageCircle, Search, Facebook, Linkedin, Twitter, Instagram } from 'lucide-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPinterest, faBehance, faFacebook, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
+
+
+const popularFeeds = [
+    {
+      img: "https://html.webtend.net/omnivus/assets/img/sidebar/feeds-1.png",
+      title: "Lorem ipsum dolor sit cing elit, sed do.",
+    },
+    {
+      img: "https://html.webtend.net/omnivus/assets/img/sidebar/feeds-2.png",
+      title: "Lorem ipsum dolor sit cing elit, sed do.",
+    },
+    {
+      img: "https://html.webtend.net/omnivus/assets/img/sidebar/feeds-3.png",
+      title: "Lorem ipsum dolor sit cing elit, sed do.",
+    },
+    {
+      img: "https://html.webtend.net/omnivus/assets/img/sidebar/feeds-4.png",
+      title: "Lorem ipsum dolor sit cing elit, sed do.",
+    },
+  ]
+
+const socialLinks = [
+  { icon: faFacebook, link: "#" },
+  { icon: faTwitter, link: "#" },
+  { icon: faBehance, link: "#" },
+  { icon: faLinkedin, link: "#" },
+  { icon: faPinterest, link: "#" },
+];
+
+const categories = [
+    { name: "Business", count: 26 },
+    { name: "Consultant", count: 30 },
+    { name: "Creative", count: 71 },
+    { name: "UI/UX", count: 56 },
+    { name: "Technology", count: 60 },
+  ]
+
+
+const tweets = [
+  {
+    text: "Rescue - #Gutenberg ready @ wordpress Theme for Creative Bloggers available on @ ThemeForest https://t.co/2rIPOj0jgV C...",
+    date: "November 25, 2018",
+    link: "#"
+  },
+  {
+    text: "Rescue - #Gutenberg ready @ wordpress Theme for Creative Bloggers available on @ ThemeForest https://t.co/2rIPOj0jgV C...",
+    date: "November 25, 2018",
+    link: "#"
+  },
+  {
+    text: "Rescue - #Gutenberg ready @ wordpress Theme for Creative Bloggers available on @ ThemeForest https://t.co/2rIPOj0jgV C...",
+    date: "November 25, 2018",
+    link: "#"
+  },
+];
+
+
+const popularTags = [
+      "Popular", "desgin", "ux",
+  "usability", "develop", "icon",
+  "business", "consult", "kit",
+  "keyboard", "mouse", "tech"
+    ]
 
 const Blog = () => {
   const dispatch = useDispatch();
@@ -12,84 +77,364 @@ const Blog = () => {
   }, [dispatch]);
 
   return (
-    <section className="py-16 lg:py-20">
-      <div className="container mx-auto px-4">
-        <div className="mb-10 text-center">
-          <span className="text-primary mb-2 block text-lg font-semibold">Our Blog</span>
-          <h2 className="text-3xl font-bold text-dark sm:text-4xl md:text-[42px]">
-            Latest Articles & Resources
-          </h2>
-          <p className="text-body-color text-base mt-4 max-w-2xl mx-auto">
-            Explore tips, news, and insights from our experts.
-          </p>
+    // <section className="py-16 lg:py-20">
+      <div className="relative min-h-screen bg-gray-50 text-gray-900 font-sans">
+        <div className="bg-[#f4f7fa] text-sm py-2 px-4 text-gray-600 flex justify-between items-center">
+          <span>info@webmail.com</span>
+          <span>786 875 864 75 7</span>
         </div>
 
-        {loading && (
-          <div className="text-center text-lg text-gray-600">Loading blogs...</div>
-        )}
+        <header className="bg-white shadow-sm">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center py-4">
+              <div className="flex items-center space-x-2">
+                <img src="https://html.webtend.net/omnivus/assets/img/logo-2.png" alt="OmniVus Logo" className="h-8 sm:h-10" />
+                <p className="text-xs text-gray-500">IT Service & Technology</p>
+              </div>
+              <nav className="hidden md:flex items-center space-x-6 font-medium text-gray-700">
+                <a href="#" className="hover:text-blue-600">HOME</a>
+                <a href="#" className="hover:text-blue-600">ABOUT</a>
+                <a href="#" className="hover:text-blue-600">SERVICES</a>
+                <a href="#" className="hover:text-blue-600">PAGES</a>
+                <a href="#" className="text-blue-600 font-semibold">BLOG</a>
+                <a href="#" className="hover:text-blue-600">CONTACT</a>
+              </nav>
+              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">Get A Quote</button>
+            </div>
+          </div>
 
-        {error && (
-          <div className="text-center text-red-500 text-lg">Error: {error}</div>
-        )}
+          {/* Header Content */}
+          <div className="text-center py-20">
+            <h1 className="text-4xl sm:text-5xl font-bold text-[#0f172a]">News Standard</h1>
+            <p className="text-blue-600 mt-2">Home | News</p>
+          </div>
+        </header>
 
-        {!loading && !error && posts.length === 0 && (
-          <div className="text-center text-gray-600 text-lg">No blogs available.</div>
-        )}
+        <div className="grid lg:grid-cols-3 gap-10">
+          {/* Blog Posts */}
+          <div className="lg:col-span-2 flex flex-col gap-10">
+            {loading && <div className="text-center text-lg text-gray-600">Loading blogs...</div>}
+            {error && <div className="text-center text-red-500 text-lg">Error: {error}</div>}
+            {!loading && !error && posts.length === 0 && (
+              <div className="text-center text-gray-600 text-lg">No blogs available.</div>
+            )}
+            {!loading && !error && posts.length > 0 &&
+              posts.map((blog) => (
+                <div
+                  key={blog.id}
+                  className="rounded-xl border border-gray-200 p-6 shadow-md hover:shadow-lg transition duration-300"
+                >
+                  {blog.bannerImage && (
+                    <img
+                      src={blog.bannerImage}
+                      alt={blog.title}
+                      className="mb-4 w-full rounded-lg object-contain max-h-[400px]"
+                    />
+                  )}
 
-        {!loading && !error && posts.length > 0 && (
-          <div className="flex flex-col gap-10">
-            {posts.map((blog) => (
-              <div
-                key={blog.id}
-                className="rounded-xl border border-gray-200 p-6 shadow-md hover:shadow-lg transition duration-300"
-              >
-                {blog.bannerImage && (
-                  <img
-                    src={blog.bannerImage}
-                    alt={blog.title}
-                    className="mb-4 w-full rounded-lg object-contain max-h-[400px]"
-                  />
-                )}
+                  <span className="inline-block bg-blue-100 text-blue-600 text-xs font-semibold px-3 py-1 rounded-full mb-3">
+                    {blog.category}
+                  </span>
 
-                <span className="inline-block bg-blue-100 text-blue-600 text-xs font-semibold px-3 py-1 rounded-full mb-3">
-                  {blog.category}
-                </span>
+                  <h3 className="text-2xl font-bold text-dark mb-3">{blog.title}</h3>
 
-                <h3 className="text-2xl font-bold text-dark mb-3">{blog.title}</h3>
-
-                <div className="flex items-center text-sm text-gray-500 gap-6 mb-4">
-                  <div className="flex items-center gap-1">
-                    <Eye className="w-4 h-4" />
-                    <span>{blog.views}</span>
+                  <div className="flex items-center text-sm text-gray-500 gap-6 mb-4">
+                    <div className="flex items-center gap-1">
+                      <Eye className="w-4 h-4" />
+                      <span>{blog.views}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <MessageCircle className="w-4 h-4" />
+                      <span>{blog.comments}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>{blog.date}</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <MessageCircle className="w-4 h-4" />
-                    <span>{blog.comments}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4" />
-                    <span>{blog.date}</span>
+
+                  <p className="text-body-color text-sm mb-6">{blog.description}</p>
+
+                  <div className="flex items-center gap-2">
+                    <img
+                      src={blog.author.image}
+                      alt={blog.author.name}
+                      className="w-8 h-8 rounded-full"
+                    />
+                    <span className="text-sm text-gray-700 font-medium">
+                      by {blog.author.name}
+                    </span>
                   </div>
                 </div>
+              ))
+            }
+          </div>
 
-                <p className="text-body-color text-sm mb-6">{blog.description}</p>
-
-                <div className="flex items-center gap-2">
-                  <img
-                    src={blog.author.image}
-                    alt={blog.author.name}
-                    className="w-8 h-8 rounded-full"
-                  />
-                  <span className="text-sm text-gray-700 font-medium">
-                    by {blog.author.name}
-                  </span>
+          {/* Sidebar */}
+          <aside className="lg:col-span-1 flex flex-col gap-8">
+            {/* About Me Card */}
+            <div className="rounded-xl border border-gray-200 p-6 shadow-md">
+              <h4 className="text-primary text-sm font-semibold mb-3 flex items-center gap-2">
+                <span className="w-1 h-4 bg-blue-600 inline-block"></span> About Me
+              </h4>
+              <div className="flex flex-col items-center text-center">
+                <img
+                  src="https://html.webtend.net/omnivus/assets/img/sidebar/blog-about.png"
+                  alt="Rosalina D. Williamson"
+                  className="w-24 h-24 rounded-full object-cover mb-3"
+                />
+                <h3 className="text-lg font-semibold text-dark mb-1">Rosalina D. Williamson</h3>
+                <p className="text-sm text-gray-600 mb-4">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+                </p>
+                <div className="flex justify-center gap-3 text-blue-600">
+                  <a href="#" className="hover:text-blue-800 transition"><Facebook className="w-4 h-4" /></a>
+                  <a href="#" className="hover:text-blue-800 transition"><Twitter className="w-4 h-4" /></a>
+                  <a href="#" className="hover:text-blue-800 transition"><Linkedin className="w-4 h-4" /></a>
+                  <a href="#" className="hover:text-blue-800 transition"><Instagram className="w-4 h-4" /></a>
                 </div>
               </div>
-            ))}
+            </div>
+
+
+            {/* Search Objects Widget */}
+            <div className="rounded-xl border border-gray-200 p-4 shadow-sm">
+              <h4 className="text-primary text-sm font-semibold mb-3 flex items-center gap-2">
+                <span className="w-1 h-4 bg-blue-600 inline-block"></span> Search Objects
+              </h4>
+              <div className="flex items-center border border-gray-300 rounded-md overflow-hidden">
+                <input
+                  type="text"
+                  placeholder="Search your keyword..."
+                  className="w-full px-3 py-2 text-sm focus:outline-none"
+                />
+                <button className="bg-blue-600 text-white px-3 py-2 hover:bg-blue-700 transition">
+                  <Search className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+
+            {/* Popular Feeds Widget */}
+            <div className="mt-8 rounded-xl border border-gray-200 p-4 shadow-sm">
+              <h4 className="text-primary text-sm font-semibold mb-3 flex items-center gap-2">
+                <span className="w-1 h-4 bg-blue-600 inline-block"></span> Popular Feeds
+              </h4>
+
+              {/* Feed Item */}
+              {popularFeeds.map((feed, i) => (
+                <div key={i} className="flex items-center gap-3 mb-4 last:mb-0">
+                  <img
+                    src={feed.img}
+                    alt="Popular Feed"
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+                  <div>
+                    <p className="text-sm font-medium leading-snug text-gray-800 hover:text-blue-600 cursor-pointer">
+                      {feed.title}
+                    </p>
+                    <div className="text-xs text-gray-500 mt-1 flex items-center gap-1">
+                      <Calendar className="w-3.5 h-3.5" /> 24th March 2019
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+
+            {/* Categories Widget */}
+            <div className="mt-8 rounded-xl border border-gray-200 p-4 shadow-sm">
+              <h4 className="text-primary text-sm font-semibold mb-3 flex items-center gap-2">
+                <span className="w-1 h-4 bg-blue-600 inline-block"></span> Categories
+              </h4>
+
+              {categories.map((category, i) => (
+                <div
+                  key={i}
+                  className="flex justify-between items-center px-4 py-2 mb-2 bg-slate-900 text-white rounded-md cursor-pointer transition"
+                >
+                  <span className="text-sm font-medium">{category.name}</span>
+                  <span className="text-xs bg-white text-slate-900 px-2 py-0.5 rounded-sm font-semibold">
+                    {category.count}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+
+            {/* Never Miss News */}
+            <div className="mt-8 border border-gray-200 p-4 rounded-xl shadow-sm">
+              <h4 className="text-primary text-sm font-semibold mb-3 flex items-center gap-2">
+                <span className="w-1 h-4 bg-blue-600 inline-block"></span> Never Miss News
+              </h4>
+
+              <div className="flex space-x-3">
+                {socialLinks.map((item, idx) => (
+                  <a
+                    key={idx}
+                    href={item.link}
+                    className="w-8 h-8 flex items-center justify-center rounded-full bg-slate-900 text-white hover:bg-blue-600 transition"
+                  >
+                    <FontAwesomeIcon icon={item.icon} className="w-4 h-4" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Twitter Feeds */}
+            <div className="border border-gray-200 p-4 rounded-xl shadow-sm mt-8">
+              <h4 className="text-primary text-sm font-semibold mb-3 flex items-center gap-2">
+                <span className="w-1 h-4 bg-blue-600 inline-block"></span> Twitter Feeds
+              </h4>
+
+              <div className="space-y-4">
+                {tweets.map((tweet, idx) => (
+                  <div key={idx} className="text-sm text-gray-600 border-b pb-3 last:border-b-0 last:pb-0">
+                    <div className="flex items-start gap-2">
+                      <FontAwesomeIcon icon={faTwitter} className="text-blue-500 mt-1" />
+                      <div>
+                        <p className="leading-snug">
+                          <a href={tweet.link} className="text-blue-600 hover:underline">
+                            {tweet.text}
+                          </a>
+                        </p>
+                        <p className="text-xs text-gray-400 mt-1">{tweet.date}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Instagram Feeds */}
+            <div className="border border-gray-200 p-4 rounded-xl shadow-sm mt-8">
+              <h4 className="text-primary text-sm font-semibold mb-4 flex items-center gap-2">
+                <span className="w-1 h-4 bg-blue-600 inline-block"></span> Instagram Feeds
+              </h4>
+              <div className="grid grid-cols-3 gap-2">
+                {[
+                    "https://html.webtend.net/omnivus/assets/img/sidebar/instagram-1.jpg",
+                    "https://html.webtend.net/omnivus/assets/img/sidebar/instagram-2.jpg",
+                    "https://html.webtend.net/omnivus/assets/img/sidebar/instagram-3.jpg",
+                    "https://html.webtend.net/omnivus/assets/img/sidebar/instagram-4.jpg",
+                    "https://html.webtend.net/omnivus/assets/img/sidebar/instagram-5.jpg",
+                    "https://html.webtend.net/omnivus/assets/img/sidebar/instagram-6.jpg",
+                    "https://html.webtend.net/omnivus/assets/img/sidebar/instagram-7.jpg",
+                    "https://html.webtend.net/omnivus/assets/img/sidebar/instagram-8.jpg",
+                    "https://html.webtend.net/omnivus/assets/img/sidebar/instagram-9.jpg",
+                  ].map((img, idx) => (
+                  <a key={idx} href={img} target="_blank" rel="noopener noreferrer">
+                    <img
+                      src={img}
+                      alt={`Instagram ${idx + 1}`}
+                      className="w-full h-20 object-cover rounded-md hover:opacity-80 transition duration-300"
+                    />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Popular Tags */}
+            <div className="border border-gray-200 p-6 bg-white w-fit">
+              <div className="flex items-center mb-4">
+                <span className="inline-block w-5 h-1 bg-blue-800 rounded-sm mr-2"></span>
+                <h2 className="text-xl font-bold text-gray-900">Popular Tags</h2>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {popularTags.map((tag, index) => (
+                  <span
+                    key={index}
+                    className="px-4 py-2 bg-blue-50 text-gray-700 text-sm font-medium rounded-md cursor-pointer transition-all duration-300 hover:bg-blue-700 hover:text-white"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            
+          </aside>
+
+        </div>
+        {/* Footer Section */}
+      <footer
+      className="text-white bg-cover bg-center relative"
+      style={{
+        backgroundImage:
+          "url('https://html.webtend.net/omnivus/assets/img/footer-bg.jpg')",
+      }}
+    >
+      {/* Blue-tinted overlay */}
+      <div className="bg-[#0a2540]/80">
+        <div className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-10">
+          {/* OmniVus Section */}
+          <div>
+            <h2 className="text-2xl font-bold mb-4">OmniVus.</h2>
+            <p className="mb-4 text-gray-300 max-w-md">
+              The web has changed a lot since Vitaly posted his first article back in
+              2006. The team at Smashing has changed too, as have the things that we
+              bring to our community—conferences, books, and our membership added to
+              the online magazine.
+            </p>
+            <p className="text-gray-300">
+              One thing that hasn’t changed is that we’re a small team — with most of
+              us not working
+            </p>
           </div>
-        )}
+
+          {/* Pages Section */}
+          <div>
+            <h2 className="text-2xl font-bold mb-4">Pages</h2>
+            <ul className="space-y-2 text-gray-300">
+              <li className="hover:text-blue-400 cursor-pointer">Home</li>
+              <li className="hover:text-blue-400 cursor-pointer">Services</li>
+              <li className="hover:text-blue-400 cursor-pointer">About</li>
+              <li className="hover:text-blue-400 cursor-pointer">Career</li>
+              <li className="hover:text-blue-400 cursor-pointer">Refund</li>
+              <li className="hover:text-blue-400 cursor-pointer">Terms</li>
+              <li className="hover:text-blue-400 cursor-pointer">Details</li>
+              <li className="hover:text-blue-400 cursor-pointer">Contact</li>
+              <li className="hover:text-blue-400 cursor-pointer">Business</li>
+              <li className="hover:text-blue-400 cursor-pointer">Affiliate</li>
+            </ul>
+          </div>
+
+          {/* Working Hours Section */}
+          <div>
+            <h2 className="text-2xl font-bold mb-4">Working Hours</h2>
+            <p className="mb-2 text-gray-300">Monday - Friday: 7:00 - 17:00</p>
+            <p className="mb-2 text-gray-300">Saturday: 7:00 - 12:00</p>
+            <p className="mb-4 text-gray-300">Sunday and holidays: 8:00 - 10:00</p>
+            <p className="text-blue-400">
+              <span className="text-white">For more than 30 years,</span> IT Service has
+              been a reliable partner in the field of logistics and cargo forwarding.
+              <br />
+              <a href="#" className="underline hover:text-blue-500">› Discover More</a>
+            </p>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="text-center py-6 border-t border-white border-opacity-20 text-gray-400">
+          <p>Copyright By@ WebTrend - 2021</p>
+        </div>
       </div>
-    </section>
+
+      {/* Floating Icons */}
+      <div className="absolute bottom-6 right-6 space-y-2">
+        <div className="w-5 h-5 bg-cyan-300 rounded-full"></div>
+        <div className="w-8 h-8 bg-blue-700 rounded-full"></div>
+        <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition cursor-pointer">
+          <span className="text-white text-lg">↑</span>
+        </div>
+      </div>
+    </footer>
+        
+  </div>
+
+      
+
+    // </section>
   );
 };
 
