@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBlogs } from '../redux/blog/blogAPI';
-import { Calendar, Eye, MessageCircle, Search, Facebook, Linkedin, Twitter, Instagram, ArrowUp,} from 'lucide-react';
+import { Calendar, Eye, MessageCircle, Search, Facebook, Linkedin, Twitter, Instagram, ArrowUp, ArrowRight} from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPinterest, faBehance, faFacebook, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { Link } from "react-router-dom"; 
@@ -144,6 +144,8 @@ const Blog = () => {
 
 
         <div className="grid lg:grid-cols-3 gap-10">
+
+          
           {/* Blog Posts */}
           <div className="lg:col-span-2 flex flex-col gap-10">
             {loading && <div className="text-center text-lg text-gray-600">Loading blogs...</div>}
@@ -215,6 +217,7 @@ const Blog = () => {
 
                 <p className="text-body-color text-sm mb-6">{blog.description}</p>
 
+                <div className="flex items-center justify-between mt-6">
                 <div className="flex items-center gap-2">
                   <img
                     src={blog.author.image}
@@ -222,9 +225,21 @@ const Blog = () => {
                     className="w-8 h-8 rounded-full"
                   />
                   <span className="text-sm text-gray-700 font-medium">
-                    by {blog.author.name}
+                    by <Link to="/blog" onClick={scrollToTop} className="hover:underline">{blog.author.name}</Link>
                   </span>
                 </div>
+
+                <Link
+                  to="/blog"
+                  onClick={scrollToTop}
+                  className="flex items-center text-blue-600 text-sm font-semibold hover:underline"
+                >
+                  <ArrowRight className="mr-1 w-4 h-4" />
+                  Read More
+                </Link>
+              </div>
+
+                
               </div>
             ))
           }
