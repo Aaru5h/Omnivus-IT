@@ -256,12 +256,12 @@ const Home = () => {
 
         {/* Nav Links */}
         <nav className="hidden md:flex space-x-6 text-sm font-medium text-slate-800">
-          <a href="/" className="hover:text-blue-600 transition">Home</a>
-          <a href="/about" className="hover:text-blue-600 transition">About</a>
-          <a href="/services" className="hover:text-blue-600 transition">Services</a>
-          <a href="/pages" className="hover:text-blue-600 transition">Pages</a>
-          <a href="/blog" className="hover:text-blue-600 transition">Blog</a>
-          <a href="/contact" className="hover:text-blue-600 transition">Contact</a>
+          <Link to="/" className="hover:text-blue-600 transition">Home</Link>
+          <Link to="/about" className="hover:text-blue-600 transition">About</Link>
+          <Link to="/services" className="hover:text-blue-600 transition">Services</Link>
+          <Link to="/pages" className="hover:text-blue-600 transition">Pages</Link>
+          <Link to="/blog" className="hover:text-blue-600 transition">Blog</Link>
+          <Link to="/contact" className="hover:text-blue-600 transition">Contact</Link>
         </nav>
 
         {/* CTA Button */}
