@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBlogs } from '../redux/blog/blogAPI';
-import { Calendar, Eye, MessageCircle, Search, Facebook, Linkedin, Twitter, Instagram, ArrowUp } from 'lucide-react';
+import { Calendar, Eye, MessageCircle, Search, Facebook, Linkedin, Twitter, Instagram, ArrowUp,} from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPinterest, faBehance, faFacebook, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { Link } from "react-router-dom"; 
 
 
 const popularFeeds = [
@@ -135,7 +136,7 @@ const Blog = () => {
       <header className="p-10 text-center">
         <h1 className="text-6xl font-extrabold mb-4">News Standard</h1>
         <nav className="text-sm text-gray-500 flex justify-center gap-2">
-          <span className="hover:text-blue-600 cursor-pointer">Home</span>
+          <span className="hover:text-blue-600 cursor-pointer"><Link to = '/'>Home</Link></span>
           <span>|</span>
           <span className="font-semibold">News</span>
         </nav>
@@ -151,55 +152,83 @@ const Blog = () => {
               <div className="text-center text-gray-600 text-lg">No blogs available.</div>
             )}
             {!loading && !error && posts.length > 0 &&
-              posts.map((blog) => (
-                <div
-                  key={blog.id}
-                  className="rounded-xl border border-gray-200 p-6 shadow-md hover:shadow-lg transition duration-300"
-                >
-                  {blog.bannerImage && (
+            posts.map((blog, index) => (
+              <div
+                key={blog.id}
+                className="rounded-xl border border-gray-200 p-6 shadow-md hover:shadow-lg transition duration-300"
+              >
+                {/* Show video overlay for the second post */}
+                {index === 1 && blog.bannerImage ? (
+                  <div className="relative mb-4 w-full rounded-lg overflow-hidden">
+                    <img
+                      src={blog.bannerImage}
+                      alt={blog.title}
+                      className="w-full object-contain max-h-[400px]"
+                    />
+                    <a
+                      href="https://youtu.be/t8mvutAh4AE"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="absolute inset-0 flex items-center justify-center"
+                    >
+                      <div className="bg-blue-600 p-4 rounded-full shadow-lg hover:scale-110 transition-transform">
+                        <svg
+                          className="w-6 h-6 text-white"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M6 4l10 6-10 6V4z" />
+                        </svg>
+                      </div>
+                    </a>
+                  </div>
+                ) : (
+                  blog.bannerImage && (
                     <img
                       src={blog.bannerImage}
                       alt={blog.title}
                       className="mb-4 w-full rounded-lg object-contain max-h-[400px]"
                     />
-                  )}
+                  )
+                )}
 
-                  <span className="inline-block bg-blue-100 text-blue-600 text-xs font-semibold px-3 py-1 rounded-full mb-3">
-                    {blog.category}
-                  </span>
+                <span className="inline-block bg-blue-100 text-blue-600 text-xs font-semibold px-3 py-1 rounded-full mb-3">
+                  {blog.category}
+                </span>
 
-                  <h3 className="text-2xl font-bold text-dark mb-3">{blog.title}</h3>
+                <h3 className="text-2xl font-bold text-dark mb-3">{blog.title}</h3>
 
-                  <div className="flex items-center text-sm text-gray-500 gap-6 mb-4">
-                    <div className="flex items-center gap-1">
-                      <Eye className="w-4 h-4" />
-                      <span>{blog.views}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <MessageCircle className="w-4 h-4" />
-                      <span>{blog.comments}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      <span>{blog.date}</span>
-                    </div>
+                <div className="flex items-center text-sm text-gray-500 gap-6 mb-4">
+                  <div className="flex items-center gap-1">
+                    <Eye className="w-4 h-4" />
+                    <span>{blog.views}</span>
                   </div>
-
-                  <p className="text-body-color text-sm mb-6">{blog.description}</p>
-
-                  <div className="flex items-center gap-2">
-                    <img
-                      src={blog.author.image}
-                      alt={blog.author.name}
-                      className="w-8 h-8 rounded-full"
-                    />
-                    <span className="text-sm text-gray-700 font-medium">
-                      by {blog.author.name}
-                    </span>
+                  <div className="flex items-center gap-1">
+                    <MessageCircle className="w-4 h-4" />
+                    <span>{blog.comments}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Calendar className="w-4 h-4" />
+                    <span>{blog.date}</span>
                   </div>
                 </div>
-              ))
-            }
+
+                <p className="text-body-color text-sm mb-6">{blog.description}</p>
+
+                <div className="flex items-center gap-2">
+                  <img
+                    src={blog.author.image}
+                    alt={blog.author.name}
+                    className="w-8 h-8 rounded-full"
+                  />
+                  <span className="text-sm text-gray-700 font-medium">
+                    by {blog.author.name}
+                  </span>
+                </div>
+              </div>
+            ))
+          }
+
           </div>
 
           {/* Sidebar */}
@@ -418,8 +447,8 @@ const Blog = () => {
           <div>
             <h2 className="text-2xl font-bold mb-4">Pages</h2>
             <ul className="space-y-2 text-gray-300">
-              <li className="hover:text-blue-400 cursor-pointer">Home</li>
-              <li className="hover:text-blue-400 cursor-pointer">Services</li>
+              <li className="hover:text-blue-400 cursor-pointer"><Link to='/'>Home</Link></li>
+              <li className="hover:text-blue-400 cursor-pointer"><Link to = '/services'>Services</Link></li>
               <li className="hover:text-blue-400 cursor-pointer">About</li>
               <li className="hover:text-blue-400 cursor-pointer">Career</li>
               <li className="hover:text-blue-400 cursor-pointer">Refund</li>

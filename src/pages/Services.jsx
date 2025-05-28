@@ -123,7 +123,7 @@ export default function Services() {
       <header className="p-10 text-center">
         <h1 className="text-6xl font-extrabold mb-4">Services</h1>
         <nav className="text-sm text-gray-500 flex justify-center gap-2">
-          <span className="hover:text-blue-600 cursor-pointer">Home</span>
+          <span className="hover:text-blue-600 cursor-pointer"><Link to = '/'>Home</Link></span>
           <span>|</span>
           <span className="font-semibold">Services</span>
         </nav>
